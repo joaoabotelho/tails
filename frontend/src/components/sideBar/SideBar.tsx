@@ -74,7 +74,7 @@ const SideBar: React.FC<Props> = ({
                 className='sideBar-links'
             >
                 <div className={`sideBar-top-images ${open ? "open" : "close"}`}>
-                    <motion.img animate={{ width: logoWidth }} className="sideBar-logo" src={logo} alt="Whats the point" />
+                    <motion.img animate={{ width: logoWidth }} className="sideBar-logo" src={logo} alt="Tails" />
                     <motion.img animate={{ rotate: rotationArrow }} onClick={handleArrowSideBar} src={arrowDown} alt="open-close arrow" />
                 </div>
 

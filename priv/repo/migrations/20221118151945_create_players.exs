@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.CreatePlayers do
+defmodule Tails.Repo.Migrations.CreatePlayers do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule ThePointWeb.ConnCase do
+defmodule TailsWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule ThePointWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ThePointWeb.ConnCase, async: true`, although
+  by setting `use TailsWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,25 +22,25 @@ defmodule ThePointWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import ThePointWeb.ConnCase
+      import TailsWeb.ConnCase
 
-      alias ThePointWeb.Router.Helpers, as: Routes
+      alias TailsWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint ThePointWeb.Endpoint
+      @endpoint TailsWeb.Endpoint
 
       @doc """
       Helper function to assign user to the connection using Pow.
       Helps developer avoid typing `otp_app: :tiger` everytime
       """
       def assign_current_user(conn, user) do
-        Pow.Plug.assign_current_user(conn, user, otp_app: :the_point)
+        Pow.Plug.assign_current_user(conn, user, otp_app: :tails)
       end
     end
   end
 
   setup tags do
-    ThePoint.DataCase.setup_sandbox(tags)
+    Tails.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

@@ -13,12 +13,12 @@ const IconButton: React.FC<Props> = ({ animateWidth, icon, className, onClick, c
     return (
         animateWidth ?
             <motion.div transition={{ duration: 0.1 }} animate={{ width: animateWidth }} className={className} onClick={onClick}>
-                <img src={icon} alt="Whats the point" />
+                <img src={icon} alt="Tails" />
                 {children}
             </motion.div>
             :
             <div className={className} onClick={onClick}>
-                <img src={icon} alt="Whats the point" />
+                <img src={icon} alt="Tails" />
                 {children}
             </div>
     )

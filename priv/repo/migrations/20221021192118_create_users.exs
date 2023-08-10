@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.CreateUsers do
+defmodule Tails.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

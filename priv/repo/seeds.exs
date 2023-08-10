@@ -1,8 +1,8 @@
 # Users
 
-alias ThePoint.Games.Games
-alias ThePoint.Users.Users
-alias ThePoint.Services.SetShortSlug
+alias Tails.Games.Games
+alias Tails.Users.Users
+alias Tails.Services.SetShortSlug
 
 {:ok, eric_cartman} =
   Users.create_user(%{

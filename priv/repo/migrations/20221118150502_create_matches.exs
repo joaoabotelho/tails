@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.CreateMatches do
+defmodule Tails.Repo.Migrations.CreateMatches do
   use Ecto.Migration
 
   def change do

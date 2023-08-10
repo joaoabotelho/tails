@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.CreateFriendshipTable do
+defmodule Tails.Repo.Migrations.CreateFriendshipTable do
   use Ecto.Migration
 
   def change do

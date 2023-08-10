@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.CreateGamesTable do
+defmodule Tails.Repo.Migrations.CreateGamesTable do
   use Ecto.Migration
 
   def change do

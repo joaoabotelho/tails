@@ -31,7 +31,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-the_point-*.tar
+tails-*.tar
 
 # If NPM crashes, it generates a log, let's ignore it too.
 npm-debug.log
@@ -65,7 +65,7 @@ npm-debug.log
 
 # Ignore Intellij files/folders
 .idea/
-the_point.iml
+tails.iml
 
 # Temporary files
 tmp

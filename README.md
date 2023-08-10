@@ -1,4 +1,4 @@
-# ThePoint
+# Tails
 
 ## Requirements
 
@@ -67,7 +67,7 @@ Execute the following command and restart the server:
 createuser postgres -s
 ```
 
-## Running The Point API
+## Running Tails API
 
 To start your Phoenix server:
 

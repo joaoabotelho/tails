@@ -1,4 +1,4 @@
-defmodule ThePoint.Repo.Migrations.AddShortSlugUniqueIndex do
+defmodule Tails.Repo.Migrations.AddShortSlugUniqueIndex do
   use Ecto.Migration
 
   @disable_ddl_transaction true

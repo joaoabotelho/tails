@@ -1,8 +1,8 @@
-defmodule ThePoint.Factory do
+defmodule Tails.Factory do
   @moduledoc false
-  use ExMachina.Ecto, repo: ThePoint.Repo
+  use ExMachina.Ecto, repo: Tails.Repo
 
-  alias ThePoint.Users.User
+  alias Tails.Users.User
 
   def user_factory(attrs \\ %{}) do
     user = %User{

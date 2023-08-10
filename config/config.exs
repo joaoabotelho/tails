@@ -7,15 +7,15 @@
 # General application configuration
 import Config
 
-config :the_point,
-  ecto_repos: [ThePoint.Repo],
+config :tails,
+  ecto_repos: [Tails.Repo],
   client_link: System.get_env("CLIENT_URL") || "http://localhost:3000/"
 
 # Configures the endpoint
-config :the_point, ThePointWeb.Endpoint,
+config :tails, TailsWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: ThePointWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: ThePoint.PubSub,
+  render_errors: [view: TailsWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Tails.PubSub,
   live_view: [signing_salt: "qSXXnO/4"]
 
 # Configures the mailer
@@ -25,7 +25,7 @@ config :the_point, ThePointWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :the_point, ThePoint.Mailer, adapter: Swoosh.Adapters.Local
+config :tails, Tails.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
@@ -38,11 +38,11 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :the_point, :pow,
-  user: ThePoint.Users.User,
-  repo: ThePoint.Repo
+config :tails, :pow,
+  user: Tails.Users.User,
+  repo: Tails.Repo
 
-config :the_point, :pow_assent,
+config :tails, :pow_assent,
   providers: [
     google: [
       client_id: System.get_env("GOOGLE_CLIENT_ID"),

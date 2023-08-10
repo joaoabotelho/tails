@@ -95,7 +95,7 @@ const CompleteProfile: React.FC = () => {
             }}
             animate={{ opacity: 1 }}
         >
-            <h3>Welcome to the Point! Please complete your profile.</h3>
+            <h3>Welcome to Tails! Please complete your profile.</h3>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
             {isLoading ? <p>Loading...</p> : ""}
             <form onSubmit={handleSubmit}>

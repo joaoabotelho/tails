@@ -1,6 +1,6 @@
 import Button from "../../components/button/Button";
 import { useNavigate } from 'react-router-dom';
-import whatsThePoint from '../../assets/whats_the_point.svg'
+import whatsTails from '../../assets/whats_tails.svg'
 import homePageVideo from '../../assets/homePage_video.mp4'
 import "./homePage.css"
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
             className="main-home-page"
         >
             <div className="footer">
-                <img src={whatsThePoint} alt="Whats the point" />
+                <img src={whatsTails} alt="Whats Tails" />
                 <Button onClick={() => navigate("/get-started")}>Get Started</Button>
             </div>
             <div className="homepage-video">

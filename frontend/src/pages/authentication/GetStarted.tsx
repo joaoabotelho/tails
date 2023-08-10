@@ -1,6 +1,6 @@
 import './getStarted.css';
 import GoogleButton from '../../components/iconButtons/GoogleButton';
-import whats_the_point from '../../assets/whats_the_point.svg';
+import whats_tails from '../../assets/whats_tails.svg';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -40,7 +40,7 @@ const GetStarted: React.FC = () => {
             className='main-section'
         >
             <div className='content-section'>
-                <img src={whats_the_point} alt="Whats the point" />
+                <img src={whats_tails} alt="Whats Tails" />
                 <div className='content-section-text'>
                     <h2 className='content-section-text-h2'>Hey, there</h2>
                     <p>Welcome to your personal scoreboard online. Invite your friends and keep track of your scores.</p>

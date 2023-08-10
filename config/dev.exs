@@ -1,16 +1,16 @@
 import Config
 
 # Configure your database
-config :the_point, ThePoint.Repo,
+config :tails, Tails.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "the_point_dev",
+  database: "tails_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-config :the_point,
+config :tails,
   cors_allowed_origin: "http://localhost:3000"
 
 # For development, we disable any cache and enable
@@ -18,7 +18,7 @@ config :the_point,
 #
 # The watchers configuration can be used to run external
 # watchers to your application.
-config :the_point, ThePointWeb.Endpoint,
+config :tails, TailsWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -52,13 +52,13 @@ config :the_point, ThePointWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :the_point, ThePointWeb.Endpoint,
+config :tails, TailsWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/the_point_web/(live|views)/.*(ex)$",
-      ~r"lib/the_point_web/templates/.*(eex)$"
+      ~r"lib/tails_web/(live|views)/.*(ex)$",
+      ~r"lib/tails_web/templates/.*(eex)$"
     ]
   ]
 

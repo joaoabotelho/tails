@@ -1,9 +1,9 @@
-defmodule ThePoint.MixProject do
+defmodule Tails.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :the_point,
+      app: :tails,
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule ThePoint.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {ThePoint.Application, []},
+      mod: {Tails.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
