@@ -19,11 +19,8 @@ defmodule TailsWeb.API.V1.UserControllerTest do
         |> get(Routes.api_v1_user_path(conn, :show))
         |> json_response(:ok)
 
-      assert response["first_name"]
-      assert response["last_name"]
+      assert response["name"]
       assert response["email"]
-      assert response["username"]
-      assert response["short_slug"]
       assert response["status"]
     end
   end
@@ -39,9 +36,7 @@ defmodule TailsWeb.API.V1.UserControllerTest do
       user = insert(:incomplete_user)
 
       params = %{
-        "first_name" => "John",
-        "last_name" => "Doe",
-        "username" => "john_doe99"
+        "name" => "John"
       }
 
       response =
@@ -65,9 +60,7 @@ defmodule TailsWeb.API.V1.UserControllerTest do
       assert errors = response["errors"]
 
       assert errors == %{
-               "first_name" => ["can't be blank"],
-               "last_name" => ["can't be blank"],
-               "username" => ["can't be blank"]
+               "name" => ["can't be blank"]
              }
     end
 
@@ -81,45 +74,6 @@ defmodule TailsWeb.API.V1.UserControllerTest do
         |> json_response(422)
 
       assert response == %{"message" => "user already active"}
-    end
-
-    test "returns errors unique username", %{conn: conn} do
-      insert(:user, username: "john_doe")
-      user = insert(:incomplete_user)
-
-      params = %{
-        "first_name" => "John",
-        "last_name" => "Doe",
-        "username" => "john_doe"
-      }
-
-      response =
-        conn
-        |> assign_current_user(user)
-        |> post(Routes.api_v1_user_path(conn, :complete_profile), params)
-        |> json_response(422)
-
-      assert errors = response["errors"]
-      assert errors == %{"username" => ["has already been taken"]}
-    end
-
-    test "returns error with not a valid username", %{conn: conn} do
-      user = insert(:incomplete_user)
-
-      params = %{
-        "first_name" => "John",
-        "last_name" => "Doe",
-        "username" => "john__doe"
-      }
-
-      response =
-        conn
-        |> assign_current_user(user)
-        |> post(Routes.api_v1_user_path(conn, :complete_profile), params)
-        |> json_response(422)
-
-      assert errors = response["errors"]
-      assert errors == %{"username" => ["not valid. please respect the rules"]}
     end
   end
 end

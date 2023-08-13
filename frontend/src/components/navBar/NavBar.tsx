@@ -13,10 +13,9 @@ const NavBar: React.FC<Props> = ({ handleClickProfile }) => {
     const { auth } = useAuth();
 
     useEffect(() => {
-        if (auth.user?.first_name && auth.user?.last_name) {
-            let first = Array.from(auth.user.first_name)[0] as string
-            let last = Array.from(auth.user.last_name)[0] as string
-            setInitials((first + last).toUpperCase())
+        if (auth.user?.name) {
+            let name = Array.from(auth.user.name)[0] as string
+            setInitials((name).toUpperCase())
         }
     }, [auth.user]);
 

@@ -29,7 +29,7 @@ defmodule TailsWeb.Router do
     # resources "/registration", RegistrationController, singleton: true, only: [:create]
     # resources "/session", SessionController, singleton: true, only: [:create, :delete]
 
-    resources "/session", SessionController, singleton: true, only: [:delete]
+    resources "/session", SessionController, singleton: true, only: [:create, :delete]
     get "/session/renew", SessionController, :renew
 
     get "/auth/:provider/new", AuthorizationController, :new
@@ -42,26 +42,6 @@ defmodule TailsWeb.Router do
     # protected API endpoints here
     get "/user", UserController, :show
     post "/user/complete-profile", UserController, :complete_profile
-
-    scope("/friendship") do
-      get "/", FriendshipController, :index
-      get "/blocked", FriendshipController, :blocked_users
-      get "/pending", FriendshipController, :list_pending
-      get "/search", FriendshipController, :search_friends
-      post "/create", FriendshipController, :create
-      post "/change-status", FriendshipController, :change_status
-      delete "/delete/:friendship_id", FriendshipController, :delete
-    end
-
-    scope("/games") do
-      get "/", GameController, :index
-      get "/search", GameController, :search
-    end
-
-    scope("/match") do
-      get "/", MatchController, :index
-      post "/create", MatchController, :create
-    end
   end
 
   if Mix.env() == :dev do

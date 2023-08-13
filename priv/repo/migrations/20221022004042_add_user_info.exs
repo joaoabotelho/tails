@@ -3,13 +3,9 @@ defmodule Tails.Repo.Migrations.AddUserInfo do
 
   def change do
     alter table(:users) do
-      add :first_name, :string, null: true
-      add :last_name, :string, null: true
-      add :username, :string, null: true
-      add :short_slug, :string
+      add :name, :string, null: true
       add :status, :string
+      add :role, :string
     end
-
-    create unique_index(:users, [:username])
   end
 end

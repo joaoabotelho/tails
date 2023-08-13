@@ -71,3 +71,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :tails,
+  seed_password: "123456789000Aa",
+  environment: "dev"

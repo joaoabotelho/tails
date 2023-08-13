@@ -1,68 +1,105 @@
 defmodule Tails.Users.User do
   @moduledoc false
   use Ecto.Schema
-  use Pow.Ecto.Schema
+
+  use Pow.Ecto.Schema,
+    password_hash_methods: {&Argon2.hash_pwd_salt/1, &Argon2.verify_pass/2},
+    password_min_length: 14
+
+  use Pow.Extension.Ecto.Schema,
+    extensions: [PowEmailConfirmation]
+
   use PowAssent.Ecto.Schema
+
+  import Pow.Ecto.Schema.Changeset,
+    only: [new_password_changeset: 3]
 
   import Ecto.Changeset
   import Tails.Changeset
 
-  alias Tails.Friendships.Friendship
-
   schema "users" do
-    field :first_name, :string, redact: true
-    field :last_name, :string, redact: true
-    field :username, :string, redact: true
-    field :short_slug, :string, redact: true
-    field :status, Ecto.Enum, values: [:initiated, :active, :deleted], default: :initiated
+    field :unconfirmed_email, :string, redact: true
+    field :name, :string, redact: true
+
+    field :status, Ecto.Enum,
+      values: [:initiated, :active, :cancelled, :deleted, :inactive],
+      default: :initiated
+
+    field :role, Ecto.Enum,
+      values: [:sitter, :admin, :client],
+      default: :client
+
+    field(:slug, :string, autogenerate: {Ecto.UUID, :generate, []})
+    field(:last_sign_in_at, :utc_datetime, redact: true)
+    field(:password_changed_at, :utc_datetime, redact: true)
 
     pow_user_fields()
-
-    has_many :friendships, Friendship, foreign_key: :requester_id
-    has_many :reverse_friendships, Friendship, foreign_key: :addressee_id
 
     timestamps()
   end
 
   @doc false
-  def changeset(user, map) do
+  def changeset(user, attrs) do
     user
-    |> cast(map, [
-      :first_name,
-      :last_name,
-      :username,
+    |> cast(attrs, [
       :email,
-      :short_slug,
+      :email_confirmed_at,
+      :name,
+      :password,
+      :password_changed_at,
       :status,
-      :password
+      :role
     ])
-    |> trim([:first_name, :last_name, :username])
-    |> validate_required([:username, :first_name, :last_name])
-    |> unique_constraint(:username)
-    |> validate_length(:first_name, count: :codepoints, max: 255)
-    |> validate_length(:last_name, count: :codepoints, max: 255)
-    |> validate_length(:username, count: :codepoints, min: 5, max: 20)
-    |> validate_username()
+    |> trim([:name, :email])
+    |> validate_required([:email, :name])
+    |> pow_extension_changeset(attrs)
+    |> validate_email(attrs)
+    |> validate_strong_password()
+    |> new_password_changeset(attrs, @pow_config)
+    |> changeset_validate_lengths()
+    |> changeset_unique_constraints()
   end
 
-  @doc """
-  1. Only contains alphanumeric characters, underscore and dot.
-  2. Underscore and dot can't be at the end or start of a username (e.g _username / username_ / .username / username.).
-  3. Underscore and dot can't be next to each other (e.g user_.name).
-  4. Underscore or dot can't be used multiple times in a row (e.g user__name / user..name).
-  5. Number of characters must be between 5 to 20.
-  """
-  def validate_username(changeset) do
-    case get_field(changeset, :username) do
-      nil ->
-        changeset
-
-      username ->
-        if String.match?(username, ~r/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/i) do
-          changeset
-        else
-          add_error(changeset, :username, "not valid. please respect the rules")
-        end
+  # validates the user_id field which by default is :email
+  # suppress pow_user_id_field_changeset validation if email is invalid
+  defp validate_email(%{valid?: false} = changeset, attrs) do
+    changeset.errors
+    |> Enum.find(fn
+      {:email, _reason} -> true
+      _error -> false
+    end)
+    |> case do
+      nil -> pow_user_id_field_changeset(changeset, attrs)
+      _email_error -> changeset
     end
+  end
+
+  defp validate_email(changeset, attrs), do: pow_user_id_field_changeset(changeset, attrs)
+
+  def validate_strong_password(user) do
+    user
+    # has a number
+    |> validate_format(:password, ~r/[0-9]+/, message: "Password must contain a number")
+    # has an upper case letter
+    |> validate_format(:password, ~r/[A-Z]+/,
+      message: "Password must contain an upper-case letter"
+    )
+    # has a lower case letter
+    |> validate_format(:password, ~r/[a-z]+/, message: "Password must contain a lower-case letter")
+  end
+
+  defp changeset_validate_lengths(changeset) do
+    changeset
+    |> validate_length(:name, count: :codepoints, max: 255)
+    |> validate_length(:email, count: :codepoints, max: 255)
+  end
+
+  defp changeset_unique_constraints(changeset), do: unique_constraint(changeset, :email)
+
+  def pow_assent_user_identity_changeset(user, %{"email" => _email_params}, _opts) do
+    user
+    |> cast_assoc(:user_identities, with: &Tails.UserIdentities.UserIdentity.changeset/2)
+    |> validate_required(:user_identities)
+    |> unique_constraint(:email)
   end
 end

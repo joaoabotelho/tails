@@ -48,7 +48,8 @@ defmodule Tails.MixProject do
       {:pow, "~> 1.0.27"},
       {:pow_assent, "~> 0.4.13"},
       {:assent, "~> 0.2.1"},
-      {:cors_plug, "~> 2.0"}
+      {:cors_plug, "~> 2.0"},
+      {:argon2_elixir, "~> 2.0"}
     ]
   end
 

@@ -19,11 +19,8 @@ defmodule TailsWeb.API.V1.UserController do
 
     {
       "email": "email@email.com",
-      "first_name": "John",
-      "last_name": "Doe",
-      "short_slug": "MLIN4H",
+      "name": "John",
       "status": "active",
-      "username": "john_doe"
     }
 
   """
@@ -39,9 +36,7 @@ defmodule TailsWeb.API.V1.UserController do
   `POST /api/v1/user/complete_profile`
 
   Params:
-    * username
-    * first_name
-    * last_name
+    * name
 
   Response 200:
 

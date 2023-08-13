@@ -8,20 +8,16 @@ import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate';
 
 const Profile: React.FC = () => {
     const { auth, setAuth } = useAuth();
-    const [firstName, setFirstName] = useState<string>(auth.user?.first_name);
-    const [lastName, setLastName] = useState<string>(auth.user?.last_name);
-    const [username, setUsername] = useState<string>(auth.user?.username);
+    const [name, setName] = useState<string>(auth.user?.name);
     const [email, setEmail] = useState<string>(auth.user?.email);
-    const [shortSlug, setShortSlug] = useState<string>(auth.user?.short_slug);
+    const [slug, setSlug] = useState<string>(auth.user?.slug);
     const navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
-        setFirstName(auth.user?.first_name)
-        setLastName(auth.user?.last_name)
-        setUsername(auth.user?.username)
+        setName(auth.user?.name)
         setEmail(auth.user?.email)
-        setShortSlug(auth.user?.short_slug)
+        setSlug(auth.user?.slug)
     }, [auth.user]);
 
     const logoutHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,10 +39,9 @@ const Profile: React.FC = () => {
             animate={{ opacity: 1 }}
             className="profile-div"
         >
-            <h3>Hello {firstName} {lastName}!</h3>
+            <h3>Hello {name}!</h3>
             <p>Email: {email}</p>
-            <p>ID: {shortSlug}</p>
-            <p>Username: {username}</p>
+            <p>ID: {slug}</p>
             <Button onClick={logoutHandle}>Logout</Button>
         </motion.div>
     )

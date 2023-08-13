@@ -8,23 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 const USERNAME_REGEX = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/;
 interface PostParams {
-    first_name: string;
-    last_name: string;
-    username: string;
+    name: string;
 }
 
 const CompleteProfile: React.FC = () => {
     const userRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLParagraphElement>(null);
 
-    const [username, setUsername] = useState<string>('');
-    const [firstName, setFirstName] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
+    const [name, setName] = useState<string>('');
     const [userFocus, setUserFocus] = useState<boolean>(false);
 
-    const [validUsername, setValidUsername] = useState<boolean>(false);
-    const [validFirstName, setValidFirstName] = useState<boolean>(false);
-    const [validLastName, setValidLastName] = useState<boolean>(false);
+    const [validName, setValidName] = useState<boolean>(false);
     const [errMsg, setErrMsg] = useState<string[]>([]);
     const [success, setSuccess] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -38,34 +32,17 @@ const CompleteProfile: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        const result = USERNAME_REGEX.test(username);
-        setValidUsername(result);
-        setErrMsg([]);
-    }, [username])
-
-    useEffect(() => {
-        if (firstName === "") {
-            setValidFirstName(false)
+        if (name === "") {
+            setValidName(false)
         } else {
-            setValidFirstName(true);
+            setValidName(true);
         }
-    }, [firstName])
-
-    useEffect(() => {
-        if (lastName === "") {
-            setValidLastName(false)
-        } else {
-            setValidLastName(true);
-        }
-    }, [lastName])
-
+    }, [name])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const params: PostParams = {
-            first_name: firstName,
-            last_name: lastName,
-            username: username
+            name: name
         }
         setIsLoading(true);
 
@@ -99,35 +76,16 @@ const CompleteProfile: React.FC = () => {
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
             {isLoading ? <p>Loading...</p> : ""}
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="name">Name</label>
                 <input
                     type="text"
-                    ref={userRef}
                     autoComplete="off"
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                     required
                     onFocus={() => setUserFocus(true)}
                     onBlur={() => setUserFocus(false)}
                 />
-                <label htmlFor="firstName">First Name</label>
-                <input
-                    type="text"
-                    autoComplete="off"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
-                />
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                    type="text"
-                    autoComplete="off"
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
-                />
-                <Button type="submit" disabled={!validFirstName || !validLastName || !validUsername}>Save</Button>
+                <Button type="submit" disabled={!validName}>Save</Button>
             </form>
         </motion.div>
     );
