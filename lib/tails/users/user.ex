@@ -17,9 +17,12 @@ defmodule Tails.Users.User do
   import Ecto.Changeset
   import Tails.Changeset
 
+  alias Tails.Pets.Pet
+  alias Tails.Sitters.Sitter
+  alias Tails.Users.PersonalDetails
+
   schema "users" do
     field :unconfirmed_email, :string, redact: true
-    field :name, :string, redact: true
 
     field :status, Ecto.Enum,
       values: [:initiated, :active, :cancelled, :deleted, :inactive],
@@ -29,11 +32,16 @@ defmodule Tails.Users.User do
       values: [:sitter, :admin, :client],
       default: :client
 
-    field(:slug, :string, autogenerate: {Ecto.UUID, :generate, []})
-    field(:last_sign_in_at, :utc_datetime, redact: true)
-    field(:password_changed_at, :utc_datetime, redact: true)
+    field :slug, :string, autogenerate: {Ecto.UUID, :generate, []}
+    field :last_sign_in_at, :utc_datetime, redact: true
+    field :password_changed_at, :utc_datetime, redact: true
 
     pow_user_fields()
+
+    has_one(:personal_details, PersonalDetails)
+    has_one(:sitter, Sitter, where: [role: :sitter])
+
+    has_many(:pets, Pet, where: [role: :client])
 
     timestamps()
   end
@@ -44,14 +52,13 @@ defmodule Tails.Users.User do
     |> cast(attrs, [
       :email,
       :email_confirmed_at,
-      :name,
       :password,
       :password_changed_at,
       :status,
       :role
     ])
-    |> trim([:name, :email])
-    |> validate_required([:email, :name])
+    |> trim([:email])
+    |> validate_required([:email])
     |> pow_extension_changeset(attrs)
     |> validate_email(attrs)
     |> validate_strong_password()
@@ -90,11 +97,14 @@ defmodule Tails.Users.User do
 
   defp changeset_validate_lengths(changeset) do
     changeset
-    |> validate_length(:name, count: :codepoints, max: 255)
     |> validate_length(:email, count: :codepoints, max: 255)
   end
 
-  defp changeset_unique_constraints(changeset), do: unique_constraint(changeset, :email)
+  defp changeset_unique_constraints(changeset) do
+    changeset
+    |> unique_constraint(:email)
+    |> unique_constraint(:slug)
+  end
 
   def pow_assent_user_identity_changeset(user, %{"email" => _email_params}, _opts) do
     user

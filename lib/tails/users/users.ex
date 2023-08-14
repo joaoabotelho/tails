@@ -6,6 +6,7 @@ defmodule Tails.Users.Users do
 
   alias Tails.Repo
   alias Tails.Users.User
+  alias Tails.Users.PersonalDetails
 
   @doc """
   Returns the list of users.
@@ -48,5 +49,11 @@ defmodule Tails.Users.Users do
     user
     |> User.changeset(attrs)
     |> Repo.update()
+  end
+
+  def create_personal_details(attrs \\ %{}) do
+    %PersonalDetails{}
+    |> PersonalDetails.changeset(attrs)
+    |> Repo.insert()
   end
 end

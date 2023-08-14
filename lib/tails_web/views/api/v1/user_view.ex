@@ -5,7 +5,6 @@ defmodule TailsWeb.API.V1.UserView do
 
   def render("show.json", %{user: user}) do
     %{
-      name: user.name,
       slug: user.slug,
       role: user.role,
       status: user.status,

@@ -7,12 +7,11 @@ defmodule Tails.Factory do
   defp utc_in_seconds, do: DateTime.truncate(DateTime.utc_now(), :second)
 
   def user_factory(attrs \\ %{}) do
-    current_pw = sequence(:name, &"Aa12345678912#{&1}")
+    current_pw = sequence(:password, &"Aa12345678912#{&1}")
     hash_pw = current_pw && Argon2.hash_pwd_salt(current_pw)
 
     user = %User{
       email: sequence(:email, &"email-#{&1}@tails.com"),
-      name: sequence(:name, &"Hero #{&1}"),
       password: current_pw,
       current_password: current_pw,
       password_hash: hash_pw,
@@ -23,13 +22,12 @@ defmodule Tails.Factory do
     merge_attributes(user, attrs)
   end
 
-  def incomplete_user_factory() do
-    current_pw = sequence(:name, &"Aa12345678912#{&1}")
+  def initiated_user_factory() do
+    current_pw = sequence(:password, &"Aa12345678912#{&1}")
     hash_pw = current_pw && Argon2.hash_pwd_salt(current_pw)
 
     %User{
       email: sequence(:email, &"email-#{&1}@tails.com"),
-      name: nil,
       password: current_pw,
       current_password: current_pw,
       password_hash: hash_pw,

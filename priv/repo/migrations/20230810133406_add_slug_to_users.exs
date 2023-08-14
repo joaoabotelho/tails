@@ -10,5 +10,7 @@ defmodule Tails.Repo.Migrations.AddSlugToUsers do
       add :password_changed_at, :utc_datetime
       add :last_sign_in_at, :utc_datetime
     end
+
+    create unique_index(:users, [:slug])
   end
 end

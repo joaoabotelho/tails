@@ -10,8 +10,9 @@ defmodule Tails.Users.Values.User do
   def build(%User{} = user) do
     Value.init_with_map()
     |> Value.add(
-      name: user.name,
       status: user.status,
+      role: user.role,
+      slug: user.slug,
       email: user.email
     )
   end
