@@ -16,7 +16,7 @@ defmodule Tails.Repo.Migrations.CreatePetsTable do
       add :vet_name, :string
       add :more_about, :string
       add :microship_id, :string
-      add :pet_type, :string
+      add :type, :string
       add :slug, :string, default: fragment("uuid_generate_v4()"), null: false
       add :user_id, references("users", on_delete: :delete_all)
 

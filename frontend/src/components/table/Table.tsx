@@ -1,6 +1,6 @@
 import React from 'react'
 import "./table.css"
-import { Match } from '../../@types/games'
+import { Match } from '../../@types/pets'
 import { TableItem } from './TableItem'
 
 interface Props {

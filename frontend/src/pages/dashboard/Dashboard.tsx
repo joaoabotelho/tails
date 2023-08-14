@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import "./dashboard.css"
 import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate'
-import { Match } from '../../@types/games'
+import { Match } from '../../@types/pets'
 import Table from '../../components/table/Table'
 
 const Dashboard: React.FC = () => {

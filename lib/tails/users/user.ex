@@ -113,4 +113,10 @@ defmodule Tails.Users.User do
     |> validate_required(:user_identities)
     |> unique_constraint(:email)
   end
+
+  def last_sign_in_at_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:last_sign_in_at])
+    |> validate_required(:last_sign_in_at)
+  end
 end

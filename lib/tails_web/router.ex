@@ -42,6 +42,7 @@ defmodule TailsWeb.Router do
     # protected API endpoints here
     get "/user", UserController, :show
     post "/user/complete-profile", UserController, :complete_profile
+    get "/pets", PetController, :show
   end
 
   if Mix.env() == :dev do

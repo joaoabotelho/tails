@@ -43,9 +43,6 @@ const IndexRoutes: React.FC = () => {
                         <Route element={<ActiveLayout />}>
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/dashboard" element={<Dashboard />} />
-                            <Route path="/friends" element={<Friends />} />
-                            <Route path="/scoreboard" element={<Scoreboard />} />
-                            <Route path="/add-match" element={<AddMatch />} />
                         </Route>
                     </Route>
                 </Route>

@@ -1,8 +1,9 @@
 defmodule TailsWeb.API.V1.SessionController do
   use TailsWeb, :controller
 
-  alias TailsWeb.APIAuthPlug
   alias Plug.Conn
+  alias Tails.Users.Handler.User
+  alias TailsWeb.APIAuthPlug
 
   @spec create(Conn.t(), map()) :: Conn.t()
   def create(conn, %{"user" => user_params}) do
@@ -10,6 +11,8 @@ defmodule TailsWeb.API.V1.SessionController do
     |> Pow.Plug.authenticate_user(user_params)
     |> case do
       {:ok, conn} ->
+        User.update_last_sign_in_at_user(conn.assigns.current_user)
+
         conn
         |> put_resp_cookie("renewal_token", conn.private.api_renewal_token)
         |> json(%{

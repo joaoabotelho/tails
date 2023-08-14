@@ -25,7 +25,9 @@ defmodule TailsWeb.API.V1.UserController do
 
   """
   def show(conn, _, current_user) do
-    render(conn, "show.json", %{user: current_user})
+    with {:ok, user} <- User.get_personal_details_for_user(current_user) do
+      render(conn, "show.json", %{user: user})
+    end
   end
 
   @doc """

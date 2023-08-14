@@ -5,19 +5,33 @@ import { motion } from 'framer-motion';
 import "./profile.css"
 import useAuth from "../../middleware/hooks/useAuth";
 import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate';
+import { UserInfo } from '../../@types/auth';
+import { PetInfo } from '../../@types/pets';
 
 const Profile: React.FC = () => {
     const { auth, setAuth } = useAuth();
-    const [name, setName] = useState<string>(auth.user?.name);
-    const [email, setEmail] = useState<string>(auth.user?.email);
-    const [slug, setSlug] = useState<string>(auth.user?.slug);
+    const [user, setUser] = useState<UserInfo>(auth.user)
+    const [pets, setPets] = useState<PetInfo[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [isSuccess, setisSuccess] = useState<boolean>(false)
+    const [isUninitialized, setisUninitialized] = useState<boolean>(true)
     const navigate = useNavigate()
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
-        setName(auth.user?.name)
-        setEmail(auth.user?.email)
-        setSlug(auth.user?.slug)
+        axiosPrivate.get("/api/v1/pets").then(response => {
+            setPets(response.data)
+            setIsLoading(false)
+            setisSuccess(true)
+        }).catch(error => {
+            setIsLoading(false)
+            setisSuccess(false)
+            console.log(error);
+        })
+    }, [])
+
+    useEffect(() => {
+        setUser(auth.user)
     }, [auth.user]);
 
     const logoutHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,10 +53,31 @@ const Profile: React.FC = () => {
             animate={{ opacity: 1 }}
             className="profile-div"
         >
-            <h3>Hello {name}!</h3>
-            <p>Email: {email}</p>
-            <p>ID: {slug}</p>
+            <h3>{user.personalDetails.title}. {user.personalDetails.name}</h3>
+            <p>Email: {user.email}</p>
+            <p>ID: {user.slug}</p>
+            <p>Morada: {user.personalDetails.address.address} {user.personalDetails.address.addressLine2} {user.personalDetails.address.postalCode} {user.personalDetails.address.city}, {user.personalDetails.address.state}</p>
+            <p>Idade: {user.personalDetails.age}</p>
+            <p>Telemovel: {user.personalDetails.mobileNumber}</p>
+            <p>Contacto de Emergencia: {user.personalDetails.emergencyContact}</p>
+
+
             <Button onClick={logoutHandle}>Logout</Button>
+
+            <div>
+                <h2>List of Pets</h2>
+                <ul>
+                    {pets.map((pet, index) => (
+                        <li key={index}>
+                            <p>Name: {pet.name}</p>
+                            <p>Breed: {pet.breed}</p>
+                            <p>Age: {pet.age}</p>
+                            <p>Type: {pet.type}</p>
+                            {/* Add more pet information here */}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </motion.div>
     )
 }

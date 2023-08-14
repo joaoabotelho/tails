@@ -2,14 +2,11 @@ defmodule TailsWeb.API.V1.UserView do
   use TailsWeb, :view
 
   alias Tails.Value.Response
+  alias Tails.Users.Values.User
 
   def render("show.json", %{user: user}) do
-    %{
-      slug: user.slug,
-      role: user.role,
-      status: user.status,
-      email: user.email
-    }
+    user
+    |> User.build()
   end
 
   def render("success.json", _) do

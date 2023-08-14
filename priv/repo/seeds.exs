@@ -87,7 +87,7 @@ now = DateTime.utc_now()
     vet_contact: "919919919",
     vet_name: "Maria",
     microship_id: "ABCDEFG12345",
-    pet_type: :xl_dog
+    type: :xl_dog
   })
 
 {:ok, _} =
@@ -104,7 +104,7 @@ now = DateTime.utc_now()
     vet_contact: "919919919",
     vet_name: "Maria",
     microship_id: "ABCDEFG12345",
-    pet_type: :s_dog
+    type: :s_dog
   })
 
 {:ok, _} =
@@ -120,7 +120,7 @@ now = DateTime.utc_now()
     vet_contact: "919919919",
     vet_name: "Maria",
     microship_id: "ABCDEFG12345",
-    pet_type: :cat
+    type: :cat
   })
 
 {:ok, stan_marsh} =

@@ -25,7 +25,7 @@ defmodule Tails.Pets.Pet do
     field :vet_name, :string
     field :more_about, :string
     field :microship_id, :string
-    field :pet_type, Ecto.Enum, values: [:xs_dog, :s_dog, :m_dog, :l_dog, :xl_dog, :cat]
+    field :type, Ecto.Enum, values: [:xs_dog, :s_dog, :m_dog, :l_dog, :xl_dog, :cat]
 
     field :slug, :string, autogenerate: {Ecto.UUID, :generate, []}
 
@@ -51,7 +51,7 @@ defmodule Tails.Pets.Pet do
       :vet_name,
       :more_about,
       :microship_id,
-      :pet_type,
+      :type,
       :user_id
     ])
     |> trim([
@@ -75,7 +75,7 @@ defmodule Tails.Pets.Pet do
       :vet_contact,
       :vet_name,
       :microship_id,
-      :pet_type,
+      :type,
       :user_id
     ])
     |> unique_constraint(:slug)

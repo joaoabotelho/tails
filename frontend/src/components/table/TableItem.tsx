@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./tableItem.css"
-import { Match, Player } from '../../@types/games'
+import { Match, Player } from '../../@types/pets'
 import useAuth from '../../middleware/hooks/useAuth'
 
 interface Props {

@@ -56,4 +56,23 @@ defmodule Tails.Users.Users do
     |> PersonalDetails.changeset(attrs)
     |> Repo.insert()
   end
+
+  @spec fetch_user(integer(), term()) :: {:ok, User.t()} | {:error, {:not_found, String.t()}}
+  def fetch_user(id, preloads \\ []) do
+    query =
+      from(user in User,
+        where: user.id == ^id,
+        preload: ^preloads
+      )
+
+    query
+    |> Repo.one()
+    |> Repo.normalize_one_result("User not found with id: #{id}")
+  end
+
+  def bump_user_last_sign_in_at!(%User{} = user, last_sign_in_at) do
+    user
+    |> User.last_sign_in_at_changeset(%{last_sign_in_at: last_sign_in_at})
+    |> Repo.update!()
+  end
 end

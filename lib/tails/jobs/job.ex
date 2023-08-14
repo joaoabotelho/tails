@@ -85,7 +85,7 @@ defmodule Tails.Jobs.Job do
       _ ->
         changeset
         |> cast_assoc(:client, required: true)
-        |> dd_error(:client_id, "Client must have the 'client' role")
+        |> add_error(:client_id, "Client must have the 'client' role")
     end
   end
 end

@@ -2,6 +2,9 @@ defmodule Tails.Pets.Pets do
   @moduledoc """
   The Pets context
   """
+
+  import Ecto.Query
+
   alias Tails.Repo
   alias Tails.Pets.Pet
 
@@ -43,4 +46,7 @@ defmodule Tails.Pets.Pets do
     |> Pet.changeset(attrs)
     |> Repo.update()
   end
+
+  def get_pets_for_user_id(user_id),
+    do: Repo.all(from(pet in Pet, where: pet.user_id == ^user_id))
 end
