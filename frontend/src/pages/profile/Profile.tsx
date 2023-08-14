@@ -44,6 +44,30 @@ const Profile: React.FC = () => {
         })
     }
 
+    const newPetHandle = () => {
+        console.log("ADD NEW PET")
+    }
+
+    const loadAvatares = (pets_array: PetInfo[], onPetClick: (pet: PetInfo) => void) => {
+        let content = <div className='pet-list'>
+            {pets_array.map((pet, i) => {
+                let first = Array.from(pet.name)[0] as string
+                let avatar_name = first.toUpperCase()
+
+                return (
+                    <a key={pet.slug} onClick={() => onPetClick(pet)}>{avatar_name}</a>
+                )
+            })}
+            <a onClick={() => newPetHandle()}>+</a>
+        </div>
+        return content
+    }
+
+    const handlePetClick = (pet: PetInfo) => {
+        navigate("/pet/" + pet.slug)
+      };
+
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -66,17 +90,7 @@ const Profile: React.FC = () => {
 
             <div>
                 <h2>List of Pets</h2>
-                <ul>
-                    {pets.map((pet, index) => (
-                        <li key={index}>
-                            <p>Name: {pet.name}</p>
-                            <p>Breed: {pet.breed}</p>
-                            <p>Age: {pet.age}</p>
-                            <p>Type: {pet.type}</p>
-                            {/* Add more pet information here */}
-                        </li>
-                    ))}
-                </ul>
+                {loadAvatares(pets, handlePetClick)}
             </div>
         </motion.div>
     )

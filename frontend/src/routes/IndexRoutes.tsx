@@ -13,10 +13,8 @@ import PersistLogin from '../components/PersistLogin'
 import RequireAuth from '../components/RequireAuth'
 import CompleteProfile from '../pages/authentication/CompleteProfile'
 import Dashboard from '../pages/dashboard/Dashboard'
-import Friends from '../pages/friends/Friends'
 import Profile from '../pages/profile/Profile'
-import Scoreboard from '../pages/scoreboard/Scoreboard'
-import AddMatch from '../pages/match/AddMatch';
+import PetProfile from '../pages/petProfile/petProfile';
 
 const IndexRoutes: React.FC = () => {
     return (
@@ -42,6 +40,7 @@ const IndexRoutes: React.FC = () => {
                     <Route element={<RequireAuth allowedRoles={["active"]} />}>
                         <Route element={<ActiveLayout />}>
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/pet/:petSlug" element={<PetProfile />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                         </Route>
                     </Route>

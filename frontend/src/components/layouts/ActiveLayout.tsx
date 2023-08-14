@@ -119,7 +119,9 @@ const ActiveLayout: React.FC = () => {
                 return (
                     <>
                         <NavBar handleClickProfile={handleClickProfile} />
-                        <Outlet />
+                        <div className='scrollable-div'>
+                            <Outlet />
+                        </div>
                     </>
                 )
             } else {

@@ -23,6 +23,9 @@ defmodule Tails.Pets.Pets do
 
   def get_pet(id), do: Repo.get(Pet, id)
 
+  @spec get_pet_by_slug(String.t()) :: Pet.t() | nil
+  def get_pet_by_slug(slug), do: Pet |> Repo.get_by(%{slug: slug})
+
   def create_pet(attrs \\ %{}) do
     %Pet{}
     |> Pet.changeset(attrs)

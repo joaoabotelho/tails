@@ -13,17 +13,22 @@ defmodule TailsWeb.API.V1.PetController do
 
   `GET /api/v1/pets`
 
-  Response 200:
+  """
+  def index(conn, _, current_user) do
+    pets = Pet.get_pets_for_user(current_user)
+    render(conn, "index.json", %{pets: pets})
+  end
 
-    {
-      "email": "email@email.com",
-      "name": "John",
-      "status": "active",
-    }
+  @doc """
+  Get pets info by slug
+
+  ## Request:
+
+  `GET /api/v1/pets/:slug`
 
   """
-  def show(conn, _, current_user) do
-    pets = Pet.get_pets_for_user(current_user)
-    render(conn, "show.json", %{pets: pets})
+  def show(conn, %{"slug" => pet_slug}, _) do
+    pet = Pet.get_pet_by_slug(pet_slug)
+    render(conn, "show.json", %{pet: pet})
   end
 end
