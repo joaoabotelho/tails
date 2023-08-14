@@ -8,6 +8,10 @@ defmodule Tails.Jobs.Job do
   import Ecto.Changeset
   import Tails.Changeset
 
+  alias Tails.Repo
+  alias Tails.Users.User
+  alias Tails.Sitters.Sitter
+
   schema "jobs" do
     field :added_notes, :string
     field :total_price, :float
@@ -27,12 +31,13 @@ defmodule Tails.Jobs.Job do
       ],
       default: :pendent
 
-    field :init_time, :time
-    field :end_time, :time
-    field :init_date, :date
-    field :end_date, :date
+    field :init_at, :utc_datetime
+    field :end_at, :utc_datetime
 
     field :slug, :string, autogenerate: {Ecto.UUID, :generate, []}
+
+    belongs_to :client, User, where: [role: :client]
+    belongs_to :sitter, Sitter
 
     timestamps()
   end
@@ -41,26 +46,46 @@ defmodule Tails.Jobs.Job do
   def changeset(address, attrs) do
     address
     |> cast(attrs, [
+      :client_id,
+      :sitter_id,
       :added_notes,
       :total_price,
       :type,
-      :init_time,
-      :end_time,
-      :init_date,
-      :end_date,
+      :init_at,
+      :end_at,
       :status
     ])
     |> trim([
       :added_notes
     ])
     |> validate_required([
+      :client_id,
       :total_price,
       :type,
-      :init_time,
-      :init_date,
+      :init_at,
       :status
     ])
     |> unique_constraint(:slug)
     |> validate_length(:added_notes, count: :codepoints, max: 255)
+    |> client_must_be_client_role()
+  end
+
+  defp client_must_be_client_role(changeset) do
+    client_id = get_field(changeset, :client_id)
+
+    case Repo.get(User, client_id) do
+      nil ->
+        changeset
+        |> cast_assoc(:client, required: true)
+        |> add_error(:client_id, "Client not found")
+
+      %{role: :client} ->
+        changeset
+
+      _ ->
+        changeset
+        |> cast_assoc(:client, required: true)
+        |> dd_error(:client_id, "Client must have the 'client' role")
+    end
   end
 end

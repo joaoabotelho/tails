@@ -9,6 +9,7 @@ defmodule Tails.Sitters.Sitter do
   import Tails.Changeset
 
   alias Tails.Users.User
+  alias Tails.Jobs.Job
 
   schema "sitters" do
     field :time_exp, :integer
@@ -22,6 +23,7 @@ defmodule Tails.Sitters.Sitter do
     field :slug, :string, autogenerate: {Ecto.UUID, :generate, []}
 
     belongs_to(:user, User)
+    has_many(:jobs, Job)
 
     timestamps()
   end

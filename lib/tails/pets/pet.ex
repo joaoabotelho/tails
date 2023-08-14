@@ -22,7 +22,7 @@ defmodule Tails.Pets.Pet do
     field :relationship_with_animals, :string
     field :special_cares, :string
     field :vet_contact, :string
-    field :name_vet, :string
+    field :vet_name, :string
     field :more_about, :string
     field :microship_id, :string
     field :pet_type, Ecto.Enum, values: [:xs_dog, :s_dog, :m_dog, :l_dog, :xl_dog, :cat]
@@ -48,7 +48,7 @@ defmodule Tails.Pets.Pet do
       :relationship_with_animals,
       :special_cares,
       :vet_contact,
-      :name_vet,
+      :vet_name,
       :more_about,
       :microship_id,
       :pet_type,
@@ -60,7 +60,7 @@ defmodule Tails.Pets.Pet do
       :relationship_with_animals,
       :special_cares,
       :vet_contact,
-      :name_vet,
+      :vet_name,
       :more_about,
       :microship_id
     ])
@@ -73,7 +73,7 @@ defmodule Tails.Pets.Pet do
       :vaccination,
       :sex,
       :vet_contact,
-      :name_vet,
+      :vet_name,
       :microship_id,
       :pet_type,
       :user_id
@@ -89,7 +89,7 @@ defmodule Tails.Pets.Pet do
     |> validate_length(:relationship_with_animals, count: :codepoints, max: 255)
     |> validate_length(:special_cares, count: :codepoints, max: 255)
     |> validate_length(:vet_contact, count: :codepoints, max: 255)
-    |> validate_length(:name_vet, count: :codepoints, max: 255)
+    |> validate_length(:vet_name, count: :codepoints, max: 255)
     |> validate_length(:more_about, count: :codepoints, max: 255)
     |> validate_length(:microship_id, count: :codepoints, max: 255)
   end

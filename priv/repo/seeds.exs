@@ -1,8 +1,11 @@
-# Users
-
-alias Tails.Users.Users
 alias Tails.Addresses.Addresses
+alias Tails.Jobs.Jobs
+alias Tails.Pets.Pets
 alias Tails.Sitters.Sitters
+alias Tails.Users.Users
+alias Timex
+
+now = DateTime.utc_now()
 
 {:ok, eric_cartman} =
   Users.create_user(%{
@@ -33,7 +36,7 @@ alias Tails.Sitters.Sitters
     title: :mr
   })
 
-{:ok, _} =
+{:ok, cartman_sitter} =
   Sitters.create_sitter(%{
     user_id: eric_cartman.id,
     time_exp: 10,
@@ -51,14 +54,73 @@ alias Tails.Sitters.Sitters
     status: :active
   })
 
+{:ok, kenny_address} =
+  Addresses.create_address(%{
+    address: "Str 2",
+    city: "South Park",
+    postal_code: "3000-035",
+    state: "Colorado"
+  })
+
 {:ok, _} =
   Users.create_personal_details(%{
     user_id: kenny_mccormick.id,
+    address_id: kenny_address.id,
     name: "Kenny McCormick",
     age: 10,
     mobile_number: "916915372",
     emergency_contact: "912589971",
     title: :mr
+  })
+
+{:ok, _} =
+  Pets.create_pet(%{
+    user_id: kenny_mccormick.id,
+    name: "Paco",
+    breed: "Stray",
+    age: 3,
+    castrated: true,
+    trained: false,
+    vaccination: true,
+    sex: :male,
+    relationship_with_animals: "very good",
+    vet_contact: "919919919",
+    vet_name: "Maria",
+    microship_id: "ABCDEFG12345",
+    pet_type: :xl_dog
+  })
+
+{:ok, _} =
+  Pets.create_pet(%{
+    user_id: kenny_mccormick.id,
+    name: "Chico",
+    breed: "Stray",
+    age: 1,
+    castrated: false,
+    trained: false,
+    vaccination: true,
+    sex: :male,
+    relationship_with_animals: "not good",
+    vet_contact: "919919919",
+    vet_name: "Maria",
+    microship_id: "ABCDEFG12345",
+    pet_type: :s_dog
+  })
+
+{:ok, _} =
+  Pets.create_pet(%{
+    user_id: kenny_mccormick.id,
+    name: "Melly",
+    breed: "Stray",
+    age: 1,
+    castrated: true,
+    trained: false,
+    vaccination: true,
+    sex: :female,
+    vet_contact: "919919919",
+    vet_name: "Maria",
+    microship_id: "ABCDEFG12345",
+    pet_type: :cat
   })
 
 {:ok, stan_marsh} =
@@ -107,4 +169,22 @@ alias Tails.Sitters.Sitters
     confirm_password: Application.get_env(:tails, :seed_password),
     password_changed_at: DateTime.truncate(DateTime.utc_now(), :second),
     status: :initiated
+  })
+
+{:ok, _} =
+  Jobs.create_job(%{
+    client_id: kenny_mccormick.id,
+    sitter_id: cartman_sitter.id,
+    total_price: 10.2,
+    type: :dog_walking,
+    init_at: now |> Timex.shift(days: 4)
+  })
+
+{:ok, _} =
+  Jobs.create_job(%{
+    client_id: kenny_mccormick.id,
+    sitter_id: cartman_sitter.id,
+    total_price: 10.2,
+    type: :dog_walking,
+    init_at: now |> Timex.shift(days: 4)
   })

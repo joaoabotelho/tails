@@ -13,7 +13,7 @@ defmodule Tails.Repo.Migrations.CreatePetsTable do
       add :relationship_with_animals, :string
       add :special_cares, :string
       add :vet_contact, :string
-      add :name_vet, :string
+      add :vet_name, :string
       add :more_about, :string
       add :microship_id, :string
       add :pet_type, :string

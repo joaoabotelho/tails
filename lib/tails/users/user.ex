@@ -18,6 +18,7 @@ defmodule Tails.Users.User do
   import Tails.Changeset
 
   alias Tails.Pets.Pet
+  alias Tails.Jobs.Job
   alias Tails.Sitters.Sitter
   alias Tails.Users.PersonalDetails
 
@@ -39,9 +40,9 @@ defmodule Tails.Users.User do
     pow_user_fields()
 
     has_one(:personal_details, PersonalDetails)
-    has_one(:sitter, Sitter, where: [role: :sitter])
+    has_one(:sitter, Sitter, foreign_key: :user_id, where: [role: :sitter])
 
-    has_many(:pets, Pet, where: [role: :client])
+    has_many(:pets, Pet, foreign_key: :user_id, where: [role: :client])
 
     timestamps()
   end

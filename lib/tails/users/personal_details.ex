@@ -5,6 +5,7 @@ defmodule Tails.Users.PersonalDetails do
   import Ecto.Changeset
   import Tails.Changeset
 
+  alias Tails.Addresses.Address
   alias Tails.Users.User
 
   schema "personal_details" do
