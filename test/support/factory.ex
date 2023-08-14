@@ -5,6 +5,7 @@ defmodule Tails.Factory do
   alias Tails.Users.User
   alias Tails.Users.PersonalDetails
   alias Tails.Addresses.Address
+  alias Tails.Pets.Pet
 
   defp utc_in_seconds, do: DateTime.truncate(DateTime.utc_now(), :second)
 
@@ -66,5 +67,26 @@ defmodule Tails.Factory do
     }
 
     merge_attributes(personal_details, attrs)
+  end
+
+  def pet_factory(attrs \\ %{}) do
+    {user, attrs} = Map.pop_lazy(attrs, :user, fn -> build(:user, role: :client) end)
+
+    pet = %Pet{
+      user: user,
+      breed: sequence(:breed, &"Raca #{&1}"),
+      name: sequence(:name, &"Paco #{&1}"),
+      age: 10,
+      castrated: true,
+      trained: true,
+      vaccination: true,
+      sex: :male,
+      vet_contact: "912912912",
+      vet_name: "Maria",
+      microship_id: "1234567890",
+      type: :l_dog
+    }
+
+    merge_attributes(pet, attrs)
   end
 end

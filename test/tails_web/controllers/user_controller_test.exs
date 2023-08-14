@@ -24,40 +24,40 @@ defmodule TailsWeb.API.V1.UserControllerTest do
       assert response["email"]
       assert response["status"]
     end
-end
-
-describe "update user" do
-  test "requires user log in", %{conn: conn} do
-    insert(:user)
-    conn = patch(conn, Routes.api_v1_user_path(conn, :update))
-    assert json_response(conn, 403)
   end
 
-  test "returns the user successfully", %{conn: conn} do
-    user = insert(:personal_details).user
+  describe "update user" do
+    test "requires user log in", %{conn: conn} do
+      insert(:user)
+      conn = patch(conn, Routes.api_v1_user_path(conn, :update))
+      assert json_response(conn, 403)
+    end
 
-    params = %{
-      "name" => "Randy Marsch",
-      "age" => 10,
-      "mobile_number" => "999999999",
-      "emergency_contact" => "900900900",
-      "title" => "mr",
-      "address" => "Street 2 3",
-      "address_line_2" => "",
-      "city" => "South Park",
-      "postal_code" => "30000",
-      "state" => "Colorado"
-    }
+    test "returns the user successfully", %{conn: conn} do
+      user = insert(:personal_details).user
 
-    response =
-      conn
-      |> assign_current_user(user)
-      |> patch(Routes.api_v1_user_path(conn, :update), params)
-      |> json_response(:ok)
+      params = %{
+        "name" => "Randy Marsch",
+        "age" => 10,
+        "mobile_number" => "999999999",
+        "emergency_contact" => "900900900",
+        "title" => "mr",
+        "address" => "Street 2 3",
+        "address_line_2" => "",
+        "city" => "South Park",
+        "postal_code" => "30000",
+        "state" => "Colorado"
+      }
 
-    assert response["data"]["status"] == "ok"
+      response =
+        conn
+        |> assign_current_user(user)
+        |> patch(Routes.api_v1_user_path(conn, :update), params)
+        |> json_response(:ok)
+
+      assert response["data"]["status"] == "ok"
+    end
   end
-end
 
   describe "complete user profile" do
     test "requires user log in", %{conn: conn} do

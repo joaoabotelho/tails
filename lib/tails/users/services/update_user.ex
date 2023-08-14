@@ -23,7 +23,7 @@ defmodule Tails.Users.Services.UpdateUser do
              Users.update_personal_details(personal_details, personal_details_attrs(user, attrs)),
            address <- Addresses.get_address(personal_details.address_id),
            {:ok, _updated_address} <- Addresses.update_address(address, attrs) do
-          updated_personal_details
+        updated_personal_details
       else
         {:error, changeset} -> Repo.rollback(changeset)
       end
