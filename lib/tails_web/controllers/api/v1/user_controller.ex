@@ -31,6 +31,23 @@ defmodule TailsWeb.API.V1.UserController do
   end
 
   @doc """
+  Update current user profile info
+
+  ## Request:
+
+  `PATCH /api/v1/user`
+
+  ## Payload:
+
+
+  """
+  def update(conn, params, current_user) do
+    with {:ok, _user} <- User.update(current_user, params) do
+      render(conn, "success.json")
+    end
+  end
+
+  @doc """
   Completes fields for user after successfull register
 
   ## Request:

@@ -42,6 +42,7 @@ defmodule TailsWeb.Router do
     # protected API endpoints here
     get "/user", UserController, :show
     post "/user/complete-profile", UserController, :complete_profile
+    patch "/user", UserController, :update
     get "/pets", PetController, :index
     get "/pets/:slug", PetController, :show
   end

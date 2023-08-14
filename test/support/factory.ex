@@ -3,6 +3,8 @@ defmodule Tails.Factory do
   use ExMachina.Ecto, repo: Tails.Repo
 
   alias Tails.Users.User
+  alias Tails.Users.PersonalDetails
+  alias Tails.Addresses.Address
 
   defp utc_in_seconds, do: DateTime.truncate(DateTime.utc_now(), :second)
 
@@ -16,7 +18,8 @@ defmodule Tails.Factory do
       current_password: current_pw,
       password_hash: hash_pw,
       password_changed_at: utc_in_seconds(),
-      status: :active
+      status: :active,
+      role: :client
     }
 
     merge_attributes(user, attrs)
@@ -34,5 +37,34 @@ defmodule Tails.Factory do
       password_changed_at: utc_in_seconds(),
       status: :initiated
     }
+  end
+
+  def address_factory(attrs \\ %{}) do
+    address = %Address{
+      address: sequence(:address, &"Street #{&1}"),
+      address_line_2: sequence(:address, &"Address #{&1}"),
+      postal_code: sequence(:address, &"Postal Code #{&1}"),
+      city: sequence(:address, &"City #{&1}"),
+      state: sequence(:address, &"State #{&1}")
+    }
+
+    merge_attributes(address, attrs)
+  end
+
+  def personal_details_factory(attrs \\ %{}) do
+    {user, attrs} = Map.pop_lazy(attrs, :user, fn -> build(:user, role: :client) end)
+    {address, attrs} = Map.pop_lazy(attrs, :user, fn -> build(:address) end)
+
+    personal_details = %PersonalDetails{
+      user: user,
+      address: address,
+      name: sequence(:name, &"John Doe #{&1}"),
+      age: 10,
+      mobile_number: "916915372",
+      emergency_contact: "912589971",
+      title: :miss
+    }
+
+    merge_attributes(personal_details, attrs)
   end
 end

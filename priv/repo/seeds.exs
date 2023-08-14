@@ -1,8 +1,8 @@
-alias Tails.Addresses.Addresses
+alias Tails.Addresses
 alias Tails.Jobs.Jobs
 alias Tails.Pets.Pets
 alias Tails.Sitters.Sitters
-alias Tails.Users.Users
+alias Tails.Users
 alias Timex
 
 now = DateTime.utc_now()

@@ -1,4 +1,4 @@
-defmodule Tails.Addresses.Addresses do
+defmodule Tails.Addresses do
   @moduledoc """
   The Addresss context
   """

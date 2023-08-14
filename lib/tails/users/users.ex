@@ -1,4 +1,4 @@
-defmodule Tails.Users.Users do
+defmodule Tails.Users do
   @moduledoc """
   The Users context
   """
@@ -56,6 +56,14 @@ defmodule Tails.Users.Users do
     |> PersonalDetails.changeset(attrs)
     |> Repo.insert()
   end
+
+  def update_personal_details(%PersonalDetails{} = personal_details, attrs) do
+    personal_details
+    |> PersonalDetails.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def get_personal_details_by_user(user_id), do: Repo.get_by(PersonalDetails, %{user_id: user_id})
 
   @spec fetch_user(integer(), term()) :: {:ok, User.t()} | {:error, {:not_found, String.t()}}
   def fetch_user(id, preloads \\ []) do

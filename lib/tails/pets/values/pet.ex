@@ -22,7 +22,7 @@ defmodule Tails.Pets.Values.Pet do
       more_about: pet.more_about,
       microship_id: pet.microship_id,
       type: pet.type,
-      slug: pet.slug,
+      slug: pet.slug
     }
   end
 end

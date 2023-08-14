@@ -4,7 +4,21 @@ defmodule Tails.Users.Handler.User do
   """
 
   alias Tails.Service.SanitizeParams
-  alias Tails.Users.Users
+  alias Tails.Users.Services.UpdateUser
+  alias Tails.Users
+
+  @update_user_attrs [
+    "name",
+    "age",
+    "mobile_number",
+    "emergency_contact",
+    "title",
+    "address",
+    "address_line_2",
+    "city",
+    "postal_code",
+    "state"
+  ]
 
   def complete_profile(%{status: :initiated} = user, params) do
     attrs = SanitizeParams.call(params, ["name"])
@@ -19,4 +33,10 @@ defmodule Tails.Users.Handler.User do
 
   def update_last_sign_in_at_user(user),
     do: Users.bump_user_last_sign_in_at!(user, DateTime.utc_now())
+
+  def update(user, params) do
+    attrs = SanitizeParams.call(params, @update_user_attrs)
+
+    UpdateUser.call(user, attrs)
+  end
 end

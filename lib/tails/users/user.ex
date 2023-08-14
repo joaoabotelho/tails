@@ -18,7 +18,6 @@ defmodule Tails.Users.User do
   import Tails.Changeset
 
   alias Tails.Pets.Pet
-  alias Tails.Jobs.Job
   alias Tails.Sitters.Sitter
   alias Tails.Users.PersonalDetails
 
