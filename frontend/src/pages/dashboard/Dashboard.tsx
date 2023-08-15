@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import "./dashboard.css"
 import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate'
-import { Match } from '../../@types/pets'
-import Table from '../../components/table/Table'
 
 const Dashboard: React.FC = () => {
-  const [matches, setMatches] = useState<Match[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
@@ -17,7 +14,6 @@ const Dashboard: React.FC = () => {
     axiosPrivate.get("/api/v1/match").then(response => {
       setIsSuccess(true)
       setIsLoading(false)
-      setMatches(response.data.data.matches)
     }).catch(error => {
       setIsLoading(false)
       setIsSuccess(false)
@@ -51,9 +47,6 @@ const Dashboard: React.FC = () => {
         <div className='dashboard-down-header'>
           <h5 className='dashboard-down-title'>Last Games Played</h5>
           <a>See all</a>
-        </div>
-        <div className='dashboard-table'>
-          <Table matches={matches} />
         </div>
       </div>
 

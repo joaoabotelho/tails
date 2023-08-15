@@ -10,6 +10,12 @@ defmodule TailsWeb.Endpoint do
     signing_salt: "cX3tuTaI"
   ]
 
+  # Profile pictures are not downloadable like the other tiger files because these are public images and Tiger needs
+  # to serve them directly on :dev environments
+  if Mix.env() == :dev do
+    plug Plug.Static, at: "/profile_pictures", from: "./media/profile_pictures"
+  end
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

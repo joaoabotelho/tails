@@ -3,9 +3,10 @@ import "./navBar.css"
 import inbox from "../../assets/InboxFilled.svg"
 import arrowDown from "../../assets/arrow_down.svg"
 import useAuth from "../../middleware/hooks/useAuth";
+import Avatar from '../avatar/Avatar';
 
 interface Props {
-    handleClickProfile: React.MouseEventHandler<HTMLAnchorElement>
+    handleClickProfile: React.MouseEventHandler<HTMLImageElement>
 }
 
 const NavBar: React.FC<Props> = ({ handleClickProfile }) => {
@@ -25,7 +26,7 @@ const NavBar: React.FC<Props> = ({ handleClickProfile }) => {
                 <img className='navBar-link-icon' src={inbox} />
             </a>
             <div className='navBar-profile'>
-                <a onClick={handleClickProfile} className='navBar-link profile'>{initials}</a>
+                <Avatar onClick={handleClickProfile} imageUrl={auth.user.profilePicture} altText={auth.user.personalDetails.name} size="medium" />
                 <img className='navBar-profile-icon' src={arrowDown} />
             </div>
         </nav>

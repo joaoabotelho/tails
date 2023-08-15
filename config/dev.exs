@@ -73,5 +73,6 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :tails,
+  file_storage_adapter: Tails.Vault.Adapters.Local,
   seed_password: "123456789000Aa",
   environment: "dev"

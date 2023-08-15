@@ -17,7 +17,8 @@ defmodule Tails.Users.Handler.User do
     "address_line_2",
     "city",
     "postal_code",
-    "state"
+    "state",
+    "profile_picture"
   ]
 
   def complete_profile(%{status: :initiated} = user, params) do

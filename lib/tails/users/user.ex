@@ -36,6 +36,8 @@ defmodule Tails.Users.User do
     field :last_sign_in_at, :utc_datetime, redact: true
     field :password_changed_at, :utc_datetime, redact: true
 
+    field(:profile_picture, :string, redact: true)
+
     pow_user_fields()
 
     has_one(:personal_details, PersonalDetails)
@@ -55,9 +57,10 @@ defmodule Tails.Users.User do
       :password,
       :password_changed_at,
       :status,
-      :role
+      :role,
+      :profile_picture
     ])
-    |> trim([:email])
+    |> trim([:email, :profile_picture])
     |> validate_required([:email])
     |> pow_extension_changeset(attrs)
     |> validate_email(attrs)

@@ -13,6 +13,7 @@ defmodule Tails.Users.Values.User do
       role: user.role,
       status: user.status,
       email: user.email,
+      profile_picture: user.profile_picture,
       personal_details: PersonalDetails.build(user.personal_details)
     }
   end

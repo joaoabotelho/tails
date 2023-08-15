@@ -15,6 +15,7 @@ import CompleteProfile from '../pages/authentication/CompleteProfile'
 import Dashboard from '../pages/dashboard/Dashboard'
 import Profile from '../pages/profile/Profile'
 import PetProfile from '../pages/petProfile/petProfile';
+import EditProfile from '../pages/profile/editProfile';
 
 const IndexRoutes: React.FC = () => {
     return (
@@ -40,6 +41,7 @@ const IndexRoutes: React.FC = () => {
                     <Route element={<RequireAuth allowedRoles={["active"]} />}>
                         <Route element={<ActiveLayout />}>
                             <Route path="/profile" element={<Profile />} />
+                            <Route path="/edit-profile" element={<EditProfile/>} />
                             <Route path="/pet/:petSlug" element={<PetProfile />} />
                             <Route path="/dashboard" element={<Dashboard />} />
                         </Route>

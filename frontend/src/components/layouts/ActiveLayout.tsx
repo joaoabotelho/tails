@@ -7,8 +7,8 @@ import "./activeLayout.css"
 import Loading from '../loading/Loading'
 import Unauthorized from '../../pages/Unauthorized'
 import useAuth from "../../middleware/hooks/useAuth";
-import capitalizeFirstLetter from "../../middleware/helpers";
 import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate';
+import { UserInfo } from '../../@types/auth'
 
 const ActiveLayout: React.FC = () => {
     const [dashboardActive, setDashboardActive] = useState<boolean>(false)
@@ -25,30 +25,31 @@ const ActiveLayout: React.FC = () => {
     useEffect(() => {
         setisUninitialized(false)
         axiosPrivate.get("/api/v1/user").then(response => {
-            const userInfo = {
+            const userInfo:UserInfo = {
                 email: response.data.email,
                 name: response.data.personal_details.name,
                 slug: response.data.slug,
                 status: response.data.status,
                 role: response.data.role,
+                profilePicture: response.data.profile_picture,
                 personalDetails: {
-                  address: {
-                    address: response.data.personal_details.address.address,
-                    addressLine2: response.data.personal_details.address.address_line_2,
-                    city: response.data.personal_details.address.city,
-                    postalCode: response.data.personal_details.address.postal_code,
-                    state: response.data.personal_details.address.state
-                  },
-                  age: response.data.personal_details.age,
-                  emergencyContact: response.data.personal_details.emergency_contact,
-                  mobileNumber: response.data.personal_details.mobile_number,
-                  name: response.data.personal_details.name,
-                  title: capitalizeFirstLetter(response.data.personal_details.title),
+                    address: {
+                        address: response.data.personal_details.address.address,
+                        addressLine2: response.data.personal_details.address.address_line_2,
+                        city: response.data.personal_details.address.city,
+                        postalCode: response.data.personal_details.address.postal_code,
+                        state: response.data.personal_details.address.state
+                    },
+                    age: response.data.personal_details.age,
+                    emergencyContact: response.data.personal_details.emergency_contact,
+                    mobileNumber: response.data.personal_details.mobile_number,
+                    name: response.data.personal_details.name,
+                    title: response.data.personal_details.title,
                 }
-              };
+            };
 
             setAuth({
-                user: userInfo, 
+                user: userInfo,
                 accessToken: auth.accessToken,
                 role: auth.role
             })

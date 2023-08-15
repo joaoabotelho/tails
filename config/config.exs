@@ -38,6 +38,8 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ex_aws, json_codec: Jason
+
 config :tails, :pow,
   user: Tails.Users.User,
   repo: Tails.Repo

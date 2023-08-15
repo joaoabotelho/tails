@@ -47,3 +47,29 @@ config :logger, level: :info
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
+
+# Use AWS IAM Roles for Service Accounts when token file env is set
+cond do
+  System.get_env("AWS_SESSION_TOKEN") ->
+    config :ex_aws,
+      access_key_id: {:system, "AWS_ACCESS_KEY_ID"},
+      security_token: {:system, "AWS_SESSION_TOKEN"},
+      secret_access_key: {:system, "AWS_SECRET_ACCESS_KEY"}
+
+  System.get_env("AWS_WEB_IDENTITY_TOKEN_FILE") ->
+    config :ex_aws,
+      secret_access_key: [{:awscli, "profile_name", 30}],
+      access_key_id: [{:awscli, "profile_name", 30}],
+      awscli_auth_adapter: ExAws.STS.AuthCache.AssumeRoleWebIdentityAdapter
+
+  true ->
+    config :ex_aws,
+      access_key_id: [System.fetch_env!("AWS_ACCESS_KEY_ID"), :instance_role],
+      secret_access_key: [System.fetch_env!("AWS_SECRET_ACCESS_KEY"), :instance_role]
+end
+
+config :tails,
+  file_storage_adapter: Tails.Vault.Adapters.S3,
+  s3_vault_bucket: System.fetch_env!("S3_VAULT_BUCKET"),
+  s3_public_bucket: System.fetch_env!("S3_PUBLIC_BUCKET"),
+  kms_key_alias: System.fetch_env!("KMS_KEY_ALIAS")

@@ -19,6 +19,7 @@ export interface UserInfo {
     slug?: string;
     status?: string;
     role?: string;
+    profilePicture?: string;
     personalDetails?: PersonalDetails;
   }
   

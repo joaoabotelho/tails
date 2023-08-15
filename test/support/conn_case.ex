@@ -31,7 +31,7 @@ defmodule TailsWeb.ConnCase do
 
       @doc """
       Helper function to assign user to the connection using Pow.
-      Helps developer avoid typing `otp_app: :tiger` everytime
+      Helps developer avoid typing `otp_app: :tails` everytime
       """
       def assign_current_user(conn, user) do
         Pow.Plug.assign_current_user(conn, user, otp_app: :tails)

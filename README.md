@@ -2,7 +2,7 @@
 
 ## Requirements
 
-You need the following to run tiger:
+You need the following to run tails:
 
 - erlang
 - elixir
@@ -15,7 +15,7 @@ With [asdf](https://github.com/asdf-vm/asdf) you can just run `asdf install` and
 
 #### Notes for upgrading erlang/elixir
 
-If you're running the tiger app locally and receive a message about missing erlang or elixir version,
+If you're running the tails app locally and receive a message about missing erlang or elixir version,
 just install the suggested version.
 For new versions of MacOS and asdf everything should go flawlessly.
 

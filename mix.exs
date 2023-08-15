@@ -50,7 +50,10 @@ defmodule Tails.MixProject do
       {:assent, "~> 0.2.1"},
       {:cors_plug, "~> 2.0"},
       {:argon2_elixir, "~> 2.0"},
-      {:timex, "~> 3.7"}
+      {:timex, "~> 3.7"},
+      {:ex_aws, "~> 2.1"},
+      {:ex_aws_s3, "~> 2.0"},
+      {:ex_marcel, "~> 0.1.0"}
     ]
   end
 

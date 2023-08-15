@@ -45,7 +45,8 @@ defmodule TailsWeb.API.V1.PetControllerTest do
         |> get(Routes.api_v1_pet_path(conn, :index))
         |> json_response(200)
 
-      response_slugs = response
+      response_slugs =
+        response
         |> Enum.map(&Map.get(&1, "slug"))
         |> Enum.uniq()
 

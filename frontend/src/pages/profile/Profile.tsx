@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import Button from '../../components/button/Button';
-import { motion } from 'framer-motion';
 import "./profile.css"
+import Button from '../../components/button/Button';
+import React, { useEffect, useState } from 'react'
+import capitalizeFirstLetter from "../../middleware/helpers";
 import useAuth from "../../middleware/hooks/useAuth";
 import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate';
-import { UserInfo } from '../../@types/auth';
 import { PetInfo } from '../../@types/pets';
+import { UserInfo } from '../../@types/auth';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import Avatar from "../../components/avatar/Avatar";
 
 const Profile: React.FC = () => {
     const { auth, setAuth } = useAuth();
@@ -31,6 +33,7 @@ const Profile: React.FC = () => {
     }, [])
 
     useEffect(() => {
+        console.log(auth.user.profilePicture)
         setUser(auth.user)
     }, [auth.user]);
 
@@ -42,6 +45,11 @@ const Profile: React.FC = () => {
         }).catch(error => {
             console.log(error)
         })
+    }
+
+    const editProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        navigate("/edit-profile");
     }
 
     const newPetHandle = () => {
@@ -77,7 +85,8 @@ const Profile: React.FC = () => {
             animate={{ opacity: 1 }}
             className="profile-div"
         >
-            <h3>{user.personalDetails.title}. {user.personalDetails.name}</h3>
+            <h3>{capitalizeFirstLetter(user.personalDetails.title)}. {user.personalDetails.name}</h3>
+            <Avatar imageUrl={user.profilePicture} altText={user.personalDetails.name} size="medium" />
             <p>Email: {user.email}</p>
             <p>ID: {user.slug}</p>
             <p>Morada: {user.personalDetails.address.address} {user.personalDetails.address.addressLine2} {user.personalDetails.address.postalCode} {user.personalDetails.address.city}, {user.personalDetails.address.state}</p>
@@ -87,6 +96,7 @@ const Profile: React.FC = () => {
 
 
             <Button onClick={logoutHandle}>Logout</Button>
+            <Button onClick={editProfile}>Edit profile</Button>
 
             <div>
                 <h2>List of Pets</h2>

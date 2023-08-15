@@ -5,6 +5,11 @@ alias Tails.Sitters.Sitters
 alias Tails.Users
 alias Timex
 
+# If running as env=test (ie: during pipeline check), swap to Stub adapter.
+if Application.get_env(:tails, :environment) == "test" do
+  Mox.stub_with(Tails.Vault.Adapters.Test, Tails.Vault.Adapters.Stub)
+end
+
 now = DateTime.utc_now()
 
 {:ok, eric_cartman} =

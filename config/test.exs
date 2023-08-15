@@ -29,6 +29,13 @@ config :logger, level: :warn
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
 
+config :ex_aws,
+  access_key_id: [System.get_env("AWS_ACCESS_KEY_ID") || "ABCD", :instance_role],
+  secret_access_key: [System.get_env("AWS_SECRET_ACCESS_KEY") || "ABCD", :instance_role],
+  retries: [max_attempts: 1]
+
 config :tails,
+  file_storage_adapter: Tails.Vault.Adapters.Test,
+  kms_key_alias: "FAKE-KEY",
   seed_password: "123456789000Aa",
   environment: "test"
