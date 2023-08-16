@@ -1,34 +1,55 @@
-.google_button {
+.google-button {
     align-items: center;
-    background: #E7E7E7;
-    border-radius: 4px;
-    border: none;
-    box-sizing: border-box;
-    color: #323232;
-    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #dadbe6;
+    border-radius: 12px;
     display: flex;
-    flex-direction: row;
-    font-family: 'Manrope';
-    font-size: 16px;
+    flex: 1;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.icon-svg {
+    height: 24px !important;
+    position: relative !important;
+    width: 24px !important;
+    top: unset !important;
+    left: unset !important;
+}
+
+.button {
+    color: var(--main-1400);
+    margin-top: -0.76px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+
+    color: var(--main-1400, #545871);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
-    height: 46.49px;
-    justify-content: space-evenly;
-    letter-spacing: 0.4px;
-    line-height: 24px;
-    padding: 0px;
-    text-align: center;
-    width: 234px;
+    line-height: 1.5rem;
+    /* 150% */
+    letter-spacing: 0.025rem;
 }
 
-.google_button:hover {
+.base {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    justify-content: center;
+    padding: 12px 24px;
+    position: relative;
+}
+
+.google-button:hover {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #E7E7E7;
-}
-
-@media screen and (max-width: 599px) {
-    .google_button {
-        width: 337px;
-        justify-content: center;
-        gap: 8px
-    }
 }

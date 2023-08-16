@@ -1,112 +1,97 @@
-.main-section {
-    display: flex;
-    height: 100vh;
-    margin: 0 20%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #1E1E1E;
-}
-
-
-.content-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px 220px;
-    text-align: center;
-    gap: 80px;
-}
-
-.content-section-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-    gap: 40px;
-}
-
-.content-section-text-h2 {
-    margin: 0;
-    white-space: nowrap;
-}
-
-p {
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    margin: 0;
-}
-
-.go-back {
-    cursor: pointer;
-    text-decoration: underline;
-    color: #F2B429;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 135%;
-    /* or 24px */
-
-    display: flex;
-    align-items: flex-end;
-    letter-spacing: 0.17px;
-    text-decoration-line: underline;
-    margin-top: 105px;
-}
-
-input {
+.get-started {
+    background-color: transparent;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.get-started .box-1 {
+    width: 43vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.clip-path-group {
+    display: flex;
+    width: 15.76988rem;
+    flex-direction: row;
     align-items: center;
-    padding: 4px 4px 4px 16px;
-    gap: 10px;
-    width: 295px;
-    height: 47px;
-    background: rgba(255, 255, 255, 0.09);
-    border-radius: 4px;
-    border: none;
-    color: white;
+    gap: 0.625rem;
 }
 
-form {
-    gap: 20px;
+.clip-path-group .company-name {
+    color: var(--main-1200, #9597A6);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
-@media screen and (max-width: 899px) {
-    .main-section {
-        position: fixed;
-        margin: 0;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
+.symbol {
+    display: flex;
+    width: 26.625rem;
+    padding: 5rem 0rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5rem;
+    flex-shrink: 0;
 }
 
-@media screen and (max-width: 599px) {
-    .main-section {
-        position: fixed;
-        margin: 0;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
+.symbol .frame {
+    display: flex;
+    padding: 0rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5625rem;
+    align-self: stretch;
+}
 
-    p {
-        font-family: 'Manrope';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 135%;
-        letter-spacing: 0.17px;
-    }
-    
-    .go-back {
-        margin-top: 0;
+.symbol .frame .were-animal-lovers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+
+.get-started .box-2 {
+    height: 100vh;
+    width: 57vw;
+    background-color: #F7ECEB;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.get-started .frame-wrapper {
+    background-size: 100% 100%;
+    border: 1px none;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.get-started .p {
+    color: var(--main-1200, #9597A6);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (min-height: 900px) {
+    .get-started .frame {
+        gap: 3.375rem;
     }
 }

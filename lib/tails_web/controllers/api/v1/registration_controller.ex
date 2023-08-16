@@ -10,12 +10,12 @@ defmodule TailsWeb.API.V1.RegistrationController do
     conn
     |> Pow.Plug.create_user(user_params)
     |> case do
-      {:ok, _user, conn} ->
-        json(conn, %{
-          data: %{
-            access_token: conn.private.api_access_token,
-            renewal_token: conn.private.api_renewal_token
-          }
+      {:ok, user, conn} ->
+        conn
+        |> put_resp_cookie("renewal_token", conn.private.api_renewal_token)
+        |> json(%{
+          access_token: conn.private.api_access_token,
+          user_status: user.status
         })
 
       {:error, changeset, conn} ->

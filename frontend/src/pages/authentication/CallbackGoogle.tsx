@@ -31,7 +31,7 @@ const CallbackGoogle: React.FC = () => {
             setAuth({ user: user, accessToken: accessToken, role: role });
 
             if (response.data.user_status === "initiated") {
-                navigate("/register")
+                navigate("/complete-profile")
             } else {
                 navigate("/profile", { replace: true }); // go to user profile or dashboard
             }

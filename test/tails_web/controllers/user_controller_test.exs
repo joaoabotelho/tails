@@ -66,6 +66,30 @@ defmodule TailsWeb.API.V1.UserControllerTest do
       assert json_response(conn, 403)
     end
 
+    test "returns the user successfully", %{conn: conn} do
+      user = insert(:initiated_user)
+
+      params = %{
+        "name" => "Randy Marsch",
+        "mobile_number" => "999999999",
+        "emergency_contact" => "900900900",
+        "title" => "mr",
+        "address" => "Street 2 3",
+        "address_line_2" => "",
+        "city" => "South Park",
+        "postal_code" => "30000",
+        "state" => "Colorado"
+      }
+
+      response =
+        conn
+        |> assign_current_user(user)
+        |> post(Routes.api_v1_user_path(conn, :complete_profile), params)
+        |> json_response(:ok)
+
+      assert response["data"]["status"] == "ok"
+    end
+
     test "returns errors with user already active", %{conn: conn} do
       user = insert(:user)
 

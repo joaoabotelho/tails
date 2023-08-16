@@ -1,79 +1,32 @@
-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.button-app {
+    border-radius: 0.75rem;
+    gap: 0.625rem;
+    padding: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     border: none;
     cursor: pointer;
-
-    /* Button Large */
-    padding: 12px 24px;
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 26px;
-    /* identical to box height, or 130% */
-
-    letter-spacing: 0.46px;
-
-    /* Font Color 3 */
-    color: #363636;
-
-    /* Yellow 1 */
-
-    background-color: #f2b429;
-    border-radius: 4px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    align-self: center;
-    flex-grow: 0;
-    transition-duration: 0.3s;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: var(--main-1200, #9597A6);
+    background-color: var(--main-1200, #DADBE6);
 }
 
-button:disabled {
-    background-color: rgba(231, 231, 231, 0.16);
-    color: rgba(231, 231, 231, 0.31);
+.button-app:enabled,
+.button-app:focus-visible:enabled {
+    background-color: #EBD0CE;
+    color: var(--main-1400, #545871);
 }
 
-button:hover:enabled {
-    /* Yellow 2 */
-    background-color: #f6a415;
-}
-
-button:focus:enabled,
-button:focus-visible:enabled {
-    background-color: radial-gradient(36.59% 100.8% at 50% 50%, #F2B429 99.54%, rgba(255, 255, 255, 0) 100%), #f6a415;
-    border-radius: 4px;
-}
-
+.secondary:enabled,
 .secondary {
-    border: 1px solid #F2B429;
-    background-color: transparent;
-    color: #F2B429;
-}
-
-button:hover.secondary:enabled {
-    border: 1px solid #F2B429;
-    background-color: rgba(242, 180, 41, 0.26);
-}
-
-button:focus.secondary:enabled,
-button:focus-visible.secondary:enabled {
-    background-color: #F6A415;
-    border-radius: 4px;
-}
-
-@media screen and (min-width: 2000px) {
-    button {
-        font-family: 'Manrope';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 26px;
-        line-height: 26px;
-        letter-spacing: 0.46px;
-    }
+    border-radius: 0.75rem;
+    border: 1px solid var(--main-1200, #DADBE6);
+    background: #FFF;
 }

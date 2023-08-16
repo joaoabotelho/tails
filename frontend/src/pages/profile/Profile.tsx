@@ -85,7 +85,7 @@ const Profile: React.FC = () => {
             animate={{ opacity: 1 }}
             className="profile-div"
         >
-            <h3>{capitalizeFirstLetter(user.personalDetails.title)}. {user.personalDetails.name}</h3>
+            <h3>{(capitalizeFirstLetter(user.personalDetails.title)) || ""} {user.personalDetails.name}</h3>
             <Avatar imageUrl={user.profilePicture} altText={user.personalDetails.name} size="medium" />
             <p>Email: {user.email}</p>
             <p>ID: {user.slug}</p>

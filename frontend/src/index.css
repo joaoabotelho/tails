@@ -1,78 +1,70 @@
-:root {
-  font-family: 'Manrope';
-  font-style: normal;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #181818;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
-  font-family: 'Manrope';
+  color: var(--main-1400, #545871);
+  font-family: Inter;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
+  line-height: normal;
 }
 
 h1 {
-  font-family: 'Manrope';
+  color: var(--main-1400, #545871);
+  /* H1 */
+  font-family: Inter;
+  font-size: 3.375rem;
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
-  line-height: 116.7%;
-  letter-spacing: -1.5px;
+  line-height: normal;
+  margin: 0rem;
 }
+
 @media screen and (min-width: 600px) {
   h1 {
-    font-size: 60px;
+    font-size: 3.75rem;
   }
 }
+
 @media screen and (min-width: 1200px) {
   h1 {
-    font-size: 96px;
+    font-size: 6rem;
   }
 }
 
 @media screen and (min-width: 2000px) {
   h1 {
-    font-size: 180px;
+    font-size: 11.25rem;
   }
 }
+
 h2 {
-  font-family: 'Manrope';
+  color: var(--main-1400, #545871);
+  /* H2 */
+  font-family: Inter;
+  font-size: 3rem;
   font-style: normal;
   font-weight: 700;
-  font-size: 60px;
-  line-height: 120%;
-  /* identical to box height, or 72px */
-
-  letter-spacing: -0.5px;
+  line-height: normal;
+  margin: 0rem;
 }
 
 h3 {
-  font-family: 'Manrope';
+  color: var(--main-1400, #545871);
+  /* H3 */
+  font-family: Inter;
+  font-size: 2.25rem;
   font-style: normal;
   font-weight: 700;
-  font-size: 60px;
-  line-height: 120%;
-  /* identical to box height, or 72px */
-
-  letter-spacing: -0.5px;
+  line-height: normal;
+  margin: 0rem;
 }
 
 h4 {
-  font-family: 'Manrope';
+  color: var(--main-1400, #545871);
+  /* H4 */
+  font-family: Inter;
+  font-size: 1.5rem;
   font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 123.5%;
-  /* identical to box height, or 35px */
-
-  letter-spacing: 0.25px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0rem;
 }

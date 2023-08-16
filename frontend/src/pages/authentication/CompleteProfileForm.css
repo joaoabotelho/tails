@@ -1,0 +1,78 @@
+.complete-profile .box-2 .frame {
+    display: flex;
+    width: 47.625rem;
+    padding: 5rem 0rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.375rem;
+    flex-shrink: 0;
+}
+
+.complete-profile .box-2 .frame .frame-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.375rem;
+    align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-3 p {
+    color: var(--main-1200, #9597A6);
+    /* Body 2 */
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    /* 1.4rem */
+    margin: 0rem;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 .first-inputs {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 .vector {
+    border: 1px solid #DADBE6;
+    height: 0rem;
+    align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 .second-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 .third-inputs {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    align-self: stretch;
+}
+
+.form-step-buttons {
+    display: flex;
+    gap: 1rem;
+}

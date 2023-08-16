@@ -5,11 +5,11 @@ defmodule Tails.Users.Handler.User do
 
   alias Tails.Service.SanitizeParams
   alias Tails.Users.Services.UpdateUser
+  alias Tails.Users.Services.CreatePersonalDetails
   alias Tails.Users
 
   @update_user_attrs [
     "name",
-    "age",
     "mobile_number",
     "emergency_contact",
     "title",
@@ -22,9 +22,10 @@ defmodule Tails.Users.Handler.User do
   ]
 
   def complete_profile(%{status: :initiated} = user, params) do
-    attrs = SanitizeParams.call(params, ["name"])
-
-    Users.update_user(user, Map.merge(attrs, %{status: :active}))
+    attrs = SanitizeParams.call(params, @update_user_attrs)
+    with {:ok, user} <- CreatePersonalDetails.call(user, attrs) do
+      Users.update_user(user, %{status: :active})
+    end
   end
 
   def complete_profile(_, _), do: {:error, 422, "user already active"}

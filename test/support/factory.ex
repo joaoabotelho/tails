@@ -20,7 +20,8 @@ defmodule Tails.Factory do
       password_hash: hash_pw,
       password_changed_at: utc_in_seconds(),
       status: :active,
-      role: :client
+      role: :client,
+      profile_picture: "something"
     }
 
     merge_attributes(user, attrs)

@@ -1,6 +1,148 @@
-form {
+.complete-profile {
+    background-color: transparent;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.complete-profile .box-1 {
+    width: 31.65vw;
+}
+
+.complete-profile .clip-path-group {
+    display: flex;
+    width: 15.76988rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.complete-profile .clip-path-group .company-name {
+    color: var(--main-1200, #9597A6);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.complete-profile .symbol {
+    display: flex;
+    width: 26.625rem;
+    padding: 5rem 0rem;
     flex-direction: column;
-    align-content: center;
+    align-items: flex-start;
+    gap: 5rem;
+    flex-shrink: 0;
+    left: 3.81rem;
+    position: fixed;
+}
+
+.complete-profile .symbol .steps-frame {
+    align-items: flex-start;
+    border: 1px none;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    min-height: 11rem;
+    min-width: 17.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.complete-profile .symbol .steps-frame .step-3,
+.complete-profile .symbol .steps-frame .step-1 {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 2rem;
+    position: relative;
+
+    color: var(--main-1400, #545871);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.complete-profile .symbol .steps-frame .step-2 {
+    display: flex;
+    padding: 0rem 2rem 0rem 3.375rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.75rem;
+
+    color: var(--main-1400, #545871);
+    /* Body 2 */
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.connector {
+    position: absolute;
+    left: 0.5rem;
+
+}
+
+.dot {
+    stroke-width: 3px;
+    stroke: #FFF;
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.dot.disable {
+    filter: opacity(0.5);
+}
+
+.complete-profile .symbol .steps-frame .disable {
+    color: var(--main-1200, #DADBE6);
+}
+
+
+
+.complete-profile .box-2 {
+    height: 100vh;
+    width: 68.35vw;
+    background-color: #F7ECEB;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.complete-profile .frame-wrapper {
+    background-size: 100% 100%;
+    border: 1px none;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.complete-profile .p {
+    color: var(--main-1200, #9597A6);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (min-height: 900px) {
+    .complete-profile .frame {
+        gap: 3.375rem;
+    }
 }

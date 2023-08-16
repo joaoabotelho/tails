@@ -55,7 +55,6 @@ defmodule Tails.Users.Services.UpdateUser do
   defp upload_profile_picture(user, nil), do: {:ok, user}
 
   defp upload_profile_picture(user, profile_picture) do
-    IO.inspect(profile_picture)
     UploadProfilePicture.call(user, profile_picture)
   end
 end

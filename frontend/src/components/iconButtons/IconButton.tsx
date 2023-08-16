@@ -5,22 +5,26 @@ interface Props {
     className: string;
     children: string;
     icon: string;
-    onClick: React.MouseEventHandler<HTMLDivElement>;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
     animateWidth?: string;
 }
 
 const IconButton: React.FC<Props> = ({ animateWidth, icon, className, onClick, children }) => {
     return (
         animateWidth ?
-            <motion.div transition={{ duration: 0.1 }} animate={{ width: animateWidth }} className={className} onClick={onClick}>
-                <img src={icon} alt="Tails" />
-                {children}
-            </motion.div>
+            <motion.button transition={{ duration: 0.1 }} animate={{ width: animateWidth }} className={className} onClick={onClick}>
+                <div className="base">
+                    <img className="icon-svg" alt="icon" src={icon} />
+                    <div className="button">{children}</div>
+                </div>
+            </motion.button>
             :
-            <div className={className} onClick={onClick}>
-                <img src={icon} alt="Tails" />
-                {children}
-            </div>
+            <button className={className} onClick={onClick}>
+                <div className="base">
+                    <img className="icon-svg" alt="icon" src={icon} />
+                    <div className="button">{children}</div>
+                </div>
+            </button>
     )
 };
 

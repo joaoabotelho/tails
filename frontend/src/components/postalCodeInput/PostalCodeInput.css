@@ -1,0 +1,69 @@
+.enter-your-input {
+    border-radius: 0.466rem;
+    box-sizing: border-box;
+    border: 1px solid var(--gray-scale-200-labels, #D2D3D6);
+    background: #FFF;
+    display: flex;
+    padding: 0.77688rem 1rem;
+    align-items: center;
+    gap: 0.77663rem;
+    width: 100%;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.enter-your-input:focus {
+    border-radius: 0.466rem;
+    border: 1px solid var(--main-1400, #545871);
+    background: var(--backgrounds-background-100-tags-soft, #FAF9F8);
+}
+
+input:focus {
+    outline: none;
+}
+
+.enter-your-input:hover {
+    background: var(--gray-scale-100, #F6F6F6);
+}
+
+.enter-your-input::placeholder {
+    color: #dadbe6;
+}
+
+.enter-input-postal-code {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+    align-self: stretch;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: var(--gray-scale-300-labels, #BCBEC0);
+}
+
+.label {
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #545871;
+}
+
+.text-fields {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 0.3125rem;
+    width: 100%;
+}
+
+.text-fields .text-wrapper {
+    color: #b8817d;
+}

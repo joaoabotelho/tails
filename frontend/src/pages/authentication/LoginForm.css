@@ -1,0 +1,129 @@
+.get-started .box-2 .frame {
+    display: flex;
+    width: 33.625rem;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.get-started .box-2 .div {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 33.625rem;
+    gap: 2.625rem;
+}
+
+.get-started .frame-2 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+.get-started .frame-3 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+.get-started .frame-4 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.get-started .design-component-instance-node {
+    align-self: stretch !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+}
+
+
+.get-started .already-a-member-log {
+    color: var(--main-1200, #9597A6);
+    /* Body */
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.get-started .text-wrapper-2 {
+    color: var(--main-1200, #9597A6);
+    /* Body */
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.get-started .text-wrapper-3 {
+    color: var(--main-1400, #545871);
+    /* Body */
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0px;
+}
+
+
+.get-started .frame-5 {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 16px;
+    position: relative;
+    width: 100%;
+}
+
+.get-started .vector {
+    flex: 1;
+    flex-grow: 1;
+    height: 1px;
+    object-fit: cover;
+    position: relative;
+}
+
+.get-started .i-have-read-the {
+    color: var(--main-1200, #9597A6);
+    /* Body */
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.get-started .frame-6 {
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 12px;
+    position: relative;
+    width: 100%;
+}

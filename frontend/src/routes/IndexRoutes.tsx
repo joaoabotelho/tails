@@ -5,7 +5,6 @@ import Layout from '../components/layouts/Layout';
 import Missing from '../pages/Missing';
 import RequireNoAuth from '../components/RequireNoAuth';
 import CallbackGoogle from '../pages/authentication/CallbackGoogle';
-import GetStarted from '../pages/authentication/GetStarted';
 import HomePage from '../pages/homePage/HomePage';
 import Unauthorized from '../pages/Unauthorized';
 import ActiveLayout from '../components/layouts/ActiveLayout'
@@ -16,6 +15,8 @@ import Dashboard from '../pages/dashboard/Dashboard'
 import Profile from '../pages/profile/Profile'
 import PetProfile from '../pages/petProfile/petProfile';
 import EditProfile from '../pages/profile/editProfile';
+import { Login } from '../pages/authentication/Login';
+import { Register } from '../pages/authentication/Register';
 
 const IndexRoutes: React.FC = () => {
     return (
@@ -27,7 +28,8 @@ const IndexRoutes: React.FC = () => {
 
                     <Route element={<RequireNoAuth />}>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/get-started" element={<GetStarted />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
                         <Route path="/login/callback" element={<CallbackGoogle />} />
                     </Route>
                 </Route>
@@ -35,7 +37,7 @@ const IndexRoutes: React.FC = () => {
                 {/* Protected Routes */}
                 <Route element={<PersistLogin />}> */
                     <Route element={<RequireAuth allowedRoles={["initiated"]} />}>
-                        <Route path="/register" element={<CompleteProfile />} />
+                        <Route path="/complete-profile" element={<CompleteProfile />} />
                     </Route>
 
                     <Route element={<RequireAuth allowedRoles={["active"]} />}>
@@ -43,7 +45,7 @@ const IndexRoutes: React.FC = () => {
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/edit-profile" element={<EditProfile/>} />
                             <Route path="/pet/:petSlug" element={<PetProfile />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/dashboard" element={<Dashboard />} /> {/* to be remove */}
                         </Route>
                     </Route>
                 </Route>

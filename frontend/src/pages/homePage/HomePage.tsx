@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
         >
             <div className="footer">
                 <img src={whatsPoint} alt="Whats the point" />
-                <Button onClick={() => navigate("/get-started")}>Get Started</Button>
+                <Button onClick={() => navigate("/login")}>Login</Button>
             </div>
             <div className="homepage-video">
                 <video hidden id="myVideo" autoPlay muted loop>
