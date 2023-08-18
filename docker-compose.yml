@@ -9,7 +9,7 @@ networks:
 
 services:
   app:
-    image: tails:0.1.0
+    image: jartsb/tails:0.1.0
     ports:
       - "80:4000"
     env_file:
