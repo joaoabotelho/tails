@@ -96,7 +96,9 @@ defmodule Tails.Users.User do
       message: "Password must contain an upper-case letter"
     )
     # has a lower case letter
-    |> validate_format(:password, ~r/[a-z]+/, message: "Password must contain a lower-case letter")
+    |> validate_format(:password, ~r/[a-z]+/,
+      message: "Password must contain a lower-case letter"
+    )
   end
 
   defp changeset_validate_lengths(changeset) do
