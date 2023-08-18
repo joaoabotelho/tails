@@ -12,11 +12,25 @@ RUN mix do local.hex --force, local.rebar --force
 # set build ENV
 ENV MIX_ENV=prod
 
+# Copy the Elixir project files
+COPY . .
+
 # install mix dependencies
 COPY mix.exs mix.lock ./
 COPY config config
 RUN mix deps.get --only $MIX_ENV
 RUN mix deps.compile
+
+# webapp build
+RUN npm install --quiet --prefix ./frontend
+RUN npm run build --prefix ./frontend
+
+# Define the path for frontend static assets in Phoenix
+ENV PUBLIC_PATH ./priv/static/webapp
+
+# Clean up any stale files and copy the frontend build artifacts
+RUN rm -rf $PUBLIC_PATH
+RUN cp -R ./frontend/dist $PUBLIC_PATH
 
 # build project
 COPY priv priv
