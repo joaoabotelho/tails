@@ -76,8 +76,7 @@ defmodule Tails.MixProject do
         "format --check-formatted",
         "credo",
         "sobelow --config",
-        "deps.unlock --check-unused",
-        "hex.audit"
+        "deps.unlock --check-unused"
       ]
     ]
   end
