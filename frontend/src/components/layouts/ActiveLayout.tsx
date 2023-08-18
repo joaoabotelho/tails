@@ -97,14 +97,14 @@ const ActiveLayout: React.FC = () => {
         navigate("/scoreboard");
     }
 
-    const handleClickProfile = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const handleClickProfile = (e: React.MouseEvent<HTMLImageElement>) => {
         setDashboardActive(false)
         setFriendsActive(false)
         setScoreboardActive(false)
         navigate("/profile");
     }
 
-    const handleClickAddMatch = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleClickAddMatch = (e: React.MouseEvent<HTMLButtonElement>) => {
         setDashboardActive(false)
         setFriendsActive(false)
         setScoreboardActive(false)

@@ -52,6 +52,7 @@ npm-debug.log
 
 /config/dev.secret.exs
 /config/test.secret.exs
+/config/docker.env
 
 .env
 .env.dev

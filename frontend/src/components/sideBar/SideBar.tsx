@@ -17,7 +17,7 @@ interface Props {
     handleClickDashboard: React.MouseEventHandler<HTMLAnchorElement>;
     handleClickFriends: React.MouseEventHandler<HTMLAnchorElement>;
     handleClickScoreboard: React.MouseEventHandler<HTMLAnchorElement>;
-    handleClickAddMatch?: React.MouseEventHandler<HTMLDivElement>;
+    handleClickAddMatch?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const SideBar: React.FC<Props> = ({

@@ -5,7 +5,7 @@ import IconButton from './IconButton';
 
 interface Props {
     open: boolean;
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
     animateWidth?: string;
 }
 
