@@ -2,6 +2,6 @@ defmodule TailsWeb.PageController do
   use TailsWeb, :controller
 
   def index(conn, _params) do
-    json(conn, :ok)
+    conn |> redirect(to: "/app") |> halt()
   end
 end

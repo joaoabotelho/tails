@@ -57,7 +57,6 @@ export const CompleteProfileForm: React.FC<Props> = ({ step, setStep }): JSX.Ele
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const profilePictureObjectURL = URL.createObjectURL(selectedFile);
 
         const params: PostParams = {
             name: name,
