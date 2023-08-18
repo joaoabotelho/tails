@@ -6,8 +6,8 @@ import dot from '../../assets/dot.svg';
 import connector from '../../assets/Connector.svg';
 import { CompleteProfileForm } from "./CompleteProfileForm";
 
-const CompleteProfile: React.FC= (): JSX.Element => {
-
+const CompleteProfile: React.FC = (): JSX.Element => {
+    const [step, setStep] = useState<number>(1);
     const navigate = useNavigate()
 
     return (
@@ -26,8 +26,8 @@ const CompleteProfile: React.FC= (): JSX.Element => {
                                 <div className="pet-basics">Perfil do Dono</div>
                             </div>
                             <div className="step-2">
-                                <div className="text-wrapper">Detalhes Pessoais</div>
-                                <div className="pet-basics-2 disable">Contactos de Emergência</div>
+                                <div className={`text-wrapper ${step === 1 ? `` : `disable`}`}>Detalhes Pessoais</div>
+                                <div className={`pet-basics-2 ${step === 2 ? `` : `disable`}`}>Contactos de Emergência</div>
                             </div>
                             <div className="step-3 disable">
                                 <img className="dot disable" alt="dot" src={dot} />
@@ -37,7 +37,10 @@ const CompleteProfile: React.FC= (): JSX.Element => {
                     </div>
                 </div>
                 <div className="box-2">
-                    <CompleteProfileForm />
+                    <CompleteProfileForm
+                        step={step}
+                        setStep={setStep}
+                    />
                 </div>
             </div>
         </div >

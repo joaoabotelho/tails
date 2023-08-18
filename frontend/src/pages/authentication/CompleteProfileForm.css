@@ -46,9 +46,13 @@
 
 .complete-profile .box-2 .frame .frame-2 .frame-4 .first-inputs {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
     align-self: stretch;
+}
+
+.complete-profile .box-2 .frame .frame-2 .frame-4 .first-inputs .text-fields {
+    width: 50%;
 }
 
 .complete-profile .box-2 .frame .frame-2 .frame-4 .vector {

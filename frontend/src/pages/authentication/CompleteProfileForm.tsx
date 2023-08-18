@@ -3,10 +3,16 @@ import { TextInput } from '../../components/textInput/TextInput'
 import { useNavigate } from 'react-router-dom';
 import Button from "../../components/button/Button";
 import "./CompleteProfileForm.css";
-import useAxiosPrivate from "../../middleware/hooks/useAxiosPrivate";
+import useAxiosMultiPrivate from '../../middleware/hooks/useAxiosMultiPrivate';
 import vector from '../../assets/vector_2.svg';
 import { PostalCodeInput } from "../../components/postalCodeInput/PostalCodeInput";
 import useAuth from "../../middleware/hooks/useAuth";
+import ProfilePictureInput from "../../components/profilePictureInput/ProfilePictureInput";
+
+interface Props {
+    step: number;
+    setStep: React.Dispatch<React.SetStateAction<number>>
+}
 
 interface PostParams {
     name: string;
@@ -19,8 +25,7 @@ interface PostParams {
     mobile_number: string;
 }
 
-export const CompleteProfileForm: React.FC = (): JSX.Element => {
-    const [step, setStep] = useState<number>(1);
+export const CompleteProfileForm: React.FC<Props> = ({ step, setStep }): JSX.Element => {
     const [name, setName] = useState<string>('')
     const [address, setAddress] = useState<string>('')
     const [addressLine2, setAddressLine2] = useState<string>('')
@@ -30,11 +35,12 @@ export const CompleteProfileForm: React.FC = (): JSX.Element => {
     const [emergencyContactName, setEmergencyContactName] = useState<string>('')
     const [emergencyContact, setEmergencyContact] = useState<string>('')
     const [personalContact, setPersonalContact] = useState<string>('')
+    const [selectedFile, setSelectedFile] = useState<File>(null);
 
     const [isFirstPartValid, setIsFirstPartValid] = useState<boolean>(false);
     const [isSecondPartValid, setIsSecondPartValid] = useState<boolean>(false);
 
-    const axiosPrivate = useAxiosPrivate();
+    const axiosMultiPrivate = useAxiosMultiPrivate();
     const { auth, setAuth } = useAuth();
     const navigate = useNavigate();
 
@@ -51,6 +57,8 @@ export const CompleteProfileForm: React.FC = (): JSX.Element => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const profilePictureObjectURL = URL.createObjectURL(selectedFile);
+
         const params: PostParams = {
             name: name,
             address: address,
@@ -61,9 +69,24 @@ export const CompleteProfileForm: React.FC = (): JSX.Element => {
             emergency_contact: emergencyContact,
             mobile_number: personalContact
         }
+
+        const data = new FormData();
+
+        for (const key in params) {
+            if (params.hasOwnProperty(key)) {
+                const value = params[key];
+                data.append(key, value);
+            }
+        }
+
+        // Now append the profile picture
+        if (selectedFile) {
+            data.append('profile_picture', selectedFile);
+        }
+
         // setIsLoading(true);
 
-        axiosPrivate.post("/api/v1/user/complete-profile", params).then(response => {
+        axiosMultiPrivate.post("/api/v1/user/complete-profile", data).then(response => {
             // setIsLoading(false);
             // setSuccess(true);
             setAuth({
@@ -127,7 +150,7 @@ export const CompleteProfileForm: React.FC = (): JSX.Element => {
                                 setValue={setName}
                                 required
                             />
-
+                            <ProfilePictureInput setSelectedFile={setSelectedFile} />
                         </div>
                         <img className="vector" alt="Vector" src={vector} />
                         <div className="second-inputs">

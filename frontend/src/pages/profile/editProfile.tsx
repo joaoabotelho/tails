@@ -4,7 +4,6 @@ import Button from '../../components/button/Button';
 import { motion } from 'framer-motion';
 import "./profile.css"
 import useAuth from "../../middleware/hooks/useAuth";
-import useAxiosPrivate from '../../middleware/hooks/useAxiosPrivate';
 import useAxiosMultiPrivate from '../../middleware/hooks/useAxiosMultiPrivate';
 import { UserInfo } from '../../@types/auth';
 
