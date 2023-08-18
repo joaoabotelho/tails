@@ -22,7 +22,7 @@ defmodule TailsWeb.API.V1.AuthorizationController do
   end
 
   defp redirect_uri(_conn) do
-    Application.get_env(:tails, :client_link) <> "app/login/callback"
+    Application.get_env(:tails, :client_link) <> "/login/callback"
   end
 
   @spec callback(Conn.t(), map()) :: Conn.t()

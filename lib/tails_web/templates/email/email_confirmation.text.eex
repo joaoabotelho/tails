@@ -1,0 +1,6 @@
+Change your email address
+
+It looks like you're attempting to change your email address for your Remote account to <%= @unconfirmed_email %>. 
+To confirm this new email address and make the change, click the link below.
+
+<%= @confirmation_url %>

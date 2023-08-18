@@ -9,7 +9,7 @@ import Config
 
 config :tails,
   ecto_repos: [Tails.Repo],
-  client_link: System.get_env("CLIENT_URL") || "http://localhost:3000/"
+  client_link: System.get_env("CLIENT_URL") || "http://localhost:3000/app"
 
 # Configures the endpoint
 config :tails, TailsWeb.Endpoint,
@@ -47,11 +47,19 @@ config :tails, :pow,
 config :tails, :pow_assent,
   providers: [
     google: [
-      client_id: System.get_env("GOOGLE_CLIENT_ID"),
-      client_secret: System.get_env("GOOGLE_CLIENT_SECRET"),
+      client_id: System.get_env("GOOGLE_API_CLIENT_ID"),
+      client_secret: System.get_env("GOOGLE_API_CLIENT_SECRET"),
       strategy: Assent.Strategy.Google
     ]
   ]
+
+config :tails, Tails.Mailer,
+  adapter: Swoosh.Adapters.Gmail,
+  username: System.get_env("MAILER_USERNAME"),
+  password: System.get_env("PASSWORD"),
+  api_client_id: System.get_env("GOOGLE_API_CLIENT_ID"),
+  api_client_secret: System.get_env("GOOGLE_API_CLIENT_SECRET"),
+  redirect_uri: "https://your-app-url.com/auth/google/callback"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

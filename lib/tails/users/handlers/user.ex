@@ -23,6 +23,7 @@ defmodule Tails.Users.Handler.User do
 
   def complete_profile(%{status: :initiated} = user, params) do
     attrs = SanitizeParams.call(params, @update_user_attrs)
+
     with {:ok, user} <- CreatePersonalDetails.call(user, attrs) do
       Users.update_user(user, %{status: :active})
     end

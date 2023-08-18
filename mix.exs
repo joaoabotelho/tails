@@ -53,7 +53,10 @@ defmodule Tails.MixProject do
       {:timex, "~> 3.7"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
-      {:ex_marcel, "~> 0.1.0"}
+      {:ex_marcel, "~> 0.1.0"},
+      {:gen_smtp, "~> 1.2"},
+      {:mail, ">= 0.0.0"},
+      {:phoenix_swoosh, "~> 1.0"}
     ]
   end
 

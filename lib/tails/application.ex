@@ -13,10 +13,11 @@ defmodule Tails.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Tails.PubSub},
       # Start the Endpoint (http/https)
-      TailsWeb.Endpoint,
+      {Task.Supervisor, name: Tails.AsyncEmailSupervisor},
+      ExMarcel.TableWrapper,
+      TailsWeb.Endpoint
       # Start a worker by calling: Tails.Worker.start_link(arg)
       # {Tails.Worker, arg}
-      ExMarcel.TableWrapper
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

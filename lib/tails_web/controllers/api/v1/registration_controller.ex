@@ -3,6 +3,7 @@ defmodule TailsWeb.API.V1.RegistrationController do
 
   alias Ecto.Changeset
   alias Plug.Conn
+  alias Tails.Auth.Services.SendEmailConfirmationEmail
   alias TailsWeb.ErrorHelpers
 
   @spec create(Conn.t(), map()) :: Conn.t()
@@ -11,6 +12,8 @@ defmodule TailsWeb.API.V1.RegistrationController do
     |> Pow.Plug.create_user(user_params)
     |> case do
       {:ok, user, conn} ->
+        SendEmailConfirmationEmail.call(user)
+
         conn
         |> put_resp_cookie("renewal_token", conn.private.api_renewal_token)
         |> json(%{

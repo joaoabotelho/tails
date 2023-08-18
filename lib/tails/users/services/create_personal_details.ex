@@ -25,7 +25,7 @@ defmodule Tails.Users.Services.CreatePersonalDetails do
            {:ok, user} <- upload_profile_picture(user, profile_picture),
            personal_details_attrs <- personal_details_attrs(user, address, attrs),
            {:ok, _personal_details} <- Users.create_personal_details(personal_details_attrs) do
-            user
+        user
       else
         {:error, changeset} -> Repo.rollback(changeset)
       end

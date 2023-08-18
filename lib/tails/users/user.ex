@@ -53,6 +53,7 @@ defmodule Tails.Users.User do
     user
     |> cast(attrs, [
       :email,
+      :unconfirmed_email,
       :email_confirmed_at,
       :password,
       :password_changed_at,

@@ -39,3 +39,5 @@ config :tails,
   kms_key_alias: "FAKE-KEY",
   seed_password: "123456789000Aa",
   environment: "test"
+
+config :tails, Tails.Mailer, adapter: Swoosh.Adapters.Local
