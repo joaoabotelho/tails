@@ -77,10 +77,10 @@ config :tails,
   s3_public_bucket: System.get_env("S3_PUBLIC_BUCKET"),
   kms_key_alias: System.get_env("KMS_KEY_ALIAS")
 
-config :tails, Tails.Mailer,
-  adapter: Swoosh.Adapters.Gmail,
-  username: System.get_env("MAILER_USERNAME") || "",
-  password: System.get_env("PASSWORD") || "",
-  api_client_id: System.get_env("GOOGLE_API_CLIENT_ID") || "",
-  api_client_secret: System.get_env("GOOGLE_API_CLIENT_SECRET") || "",
-  redirect_uri: "https://your-app-url.com/auth/google/callback"
+config :tails, Swoosh,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.gmail.com",
+  username: System.get_env("MAILER_USERNAME"),
+  password: System.get_env("MAILER_PASSWORD"),
+  port: 587,
+  tls: :always
