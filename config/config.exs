@@ -53,13 +53,13 @@ config :tails, :pow_assent,
     ]
   ]
 
-config :tails, Tails.Mailer,
-  adapter: Swoosh.Adapters.Gmail,
+config :tails, Swoosh,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.gmail.com",
   username: System.get_env("MAILER_USERNAME"),
-  password: System.get_env("PASSWORD"),
-  api_client_id: System.get_env("GOOGLE_API_CLIENT_ID"),
-  api_client_secret: System.get_env("GOOGLE_API_CLIENT_SECRET"),
-  redirect_uri: "https://your-app-url.com/auth/google/callback"
+  password: System.get_env("MAILER_PASSWORD"),
+  port: 587,
+  tls: :always
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
