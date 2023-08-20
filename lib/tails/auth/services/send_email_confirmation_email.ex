@@ -13,11 +13,12 @@ defmodule Tails.Auth.Services.SendEmailConfirmationEmail do
   def call(auth_record) do
     Logger.info("Starting SendEmailConfirmationEmail task...")
 
-    task =  Task.Supervisor.async(Tails.AsyncEmailSupervisor, fn ->
-      auth_record
-      |> EmailConfirmationEmail.build()
-      |> Mailer.deliver()
-    end)
+    task =
+      Task.Supervisor.async(Tails.AsyncEmailSupervisor, fn ->
+        auth_record
+        |> EmailConfirmationEmail.build()
+        |> Mailer.deliver()
+      end)
 
     result = Task.await(task)
 
