@@ -78,3 +78,9 @@ config :tails,
   environment: "dev"
 
 config :tails, Tails.Mailer, adapter: Swoosh.Adapters.Local
+
+config :sendgrid,
+  api_key: "SENDGRID_API_KEY",
+  phoenix_view: TailsWeb.EmailView,
+  phoenix_layout: {TailsWeb.EmailView, :layout},
+  sandbox_enable: true

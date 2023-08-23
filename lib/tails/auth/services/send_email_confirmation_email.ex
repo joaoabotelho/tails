@@ -6,8 +6,8 @@ defmodule Tails.Auth.Services.SendEmailConfirmationEmail do
   require Logger
 
   alias Tails.Users.User
-  alias Tails.Mailer
   alias Tails.Mailer.EmailConfirmationEmail
+  alias SendGrid.Mail
 
   @spec call(User.t()) :: :ok | {:error, String.t()}
   def call(auth_record) do
@@ -17,7 +17,7 @@ defmodule Tails.Auth.Services.SendEmailConfirmationEmail do
       Task.Supervisor.async(Tails.AsyncEmailSupervisor, fn ->
         auth_record
         |> EmailConfirmationEmail.build()
-        |> Mailer.deliver()
+        |> Mail.send()
       end)
 
     result = Task.await(task)

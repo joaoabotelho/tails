@@ -58,6 +58,7 @@ defmodule Tails.MixProject do
       {:pow_assent, "~> 0.4.13"},
       {:sobelow, "~> 0.10", only: [:dev, :test], runtime: false},
       {:swoosh, "~> 1.5"},
+      {:sendgrid, "~> 2.0"},
       {:timex, "~> 3.7"}
     ]
   end

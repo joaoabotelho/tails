@@ -1,20 +1,20 @@
 defmodule Tails.Mailer.EmailConfirmationEmail do
   @moduledoc false
 
-  use Phoenix.Swoosh, layout: {TailsWeb.EmailView, :layout}, view: TailsWeb.EmailView
-
   import Tails.Mailer.MailerConfig
+
+  import SendGrid.Email
 
   def build(%{
         unconfirmed_email: unconfirmed_email,
         email_confirmation_token: email_confirmation_token
       })
       when not is_nil(unconfirmed_email) and not is_nil(email_confirmation_token) do
-    new()
-    |> to(unconfirmed_email)
-    |> from({"Tails", from_mail()})
-    |> subject("Confirm your email address")
-    |> render_body(:email_confirmation,
+    build()
+    |> add_to(unconfirmed_email)
+    |> put_from({"Tails", from_mail()})
+    |> put_subject("Confirm your email address")
+    |> put_phoenix_template(:email_confirmation,
       unconfirmed_email: unconfirmed_email,
       confirmation_url: build_confirmation_url(email_confirmation_token)
     )
@@ -27,11 +27,11 @@ defmodule Tails.Mailer.EmailConfirmationEmail do
       })
       when not is_nil(email) and is_nil(unconfirmed_email) and
              not is_nil(email_confirmation_token) do
-    new()
-    |> to(email)
-    |> from({"Tails", from_mail()})
-    |> subject("Confirm your email address")
-    |> render_body(:email_confirmation,
+    build()
+    |> add_to(email)
+    |> put_from({"Tails", from_mail()})
+    |> put_subject("Confirm your email address")
+    |> put_phoenix_template(:email_confirmation,
       unconfirmed_email: email,
       confirmation_url: build_confirmation_url(email_confirmation_token)
     )

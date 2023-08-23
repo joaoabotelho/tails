@@ -77,10 +77,7 @@ config :tails,
   s3_public_bucket: System.get_env("S3_PUBLIC_BUCKET"),
   kms_key_alias: System.get_env("KMS_KEY_ALIAS")
 
-config :tails, Swoosh,
-  adapter: Swoosh.Adapters.SMTP,
-  relay: "smtp.gmail.com",
-  username: System.get_env("MAILER_USERNAME"),
-  password: System.get_env("MAILER_PASSWORD"),
-  port: 587,
-  tls: :always
+config :sendgrid,
+  api_key: System.get_env("SENDGRID_API_KEY") || "sendgrid_api_key",
+  phoenix_view: TailsWeb.EmailView,
+  phoenix_layout: {TailsWeb.EmailView, :layout}
